@@ -123,7 +123,7 @@
         <iframe data-aa='2446003' src='//acceptable.a-ads.com/2446003/?size=Adaptive' style='border:0; padding:0; width:100%; height:auto; overflow:hidden; display: block; margin: auto'></iframe>
     </div>
 
-    <!-- منطقة المؤقت السحري وزر التحميل (بعد الإعلانات الخمسة) -->
+    <!-- منطقة المؤقت السحري وزر التحميل -->
     <div class="timer-section">
         <div id="countdown-area">
             <p>برجاء الانتظار: <span id="timer">15</span> ثانية</p>
@@ -131,7 +131,7 @@
         <button id="download-btn" class="btn" disabled>انتظر تحضير الرابط...</button>
     </div>
 
-    <!-- 6. البانر السادس (تحت الزر) -->
+    <!-- 6. البانر السادس -->
     <div class="ad-box">
         <iframe data-aa='2446003' src='//acceptable.a-ads.com/2446003/?size=Adaptive' style='border:0; padding:0; width:100%; height:auto; overflow:hidden; display: block; margin: auto'></iframe>
     </div>
@@ -143,23 +143,25 @@
 
 </div>
 
+<!-- السكربت الخاص بك دون أي تعديل نهائياً -->
 <script>
-    // === كود إعلان البوب اندر السريع ===
-    const targetLink = "https://www.effectivecpmnetwork.com/yikqud60?key=5eb19de74fc2424b1bb5308e8244ffdc";
-    let canOpenPop = true;
+const targetLink = "https://www.effectivecpmnetwork.com/yikqud60?key=5eb19de74fc2424b1bb5308e8244ffdc";
+let canOpenPop = true;
 
-    document.addEventListener('click', function() {
-        if (canOpenPop) {
-            window.open(targetLink, '_blank');
-            canOpenPop = false;
-            
-            setTimeout(function() {
-                canOpenPop = true;
-            }, 8000);
-        }
-    });
+document.addEventListener('click', function() {
+    if (canOpenPop) {
+        window.open(targetLink, '_blank');
+        canOpenPop = false;
+        
+        setTimeout(function() {
+            canOpenPop = true;
+        }, 8000);
+    }
+});
+</script>
 
-    // === كود العداد وفك التشفير ===
+<script>
+    // كود العداد وفك التشفير
     function getQueryParam(param) {
         const urlParams = new URLSearchParams(window.location.search);
         return urlParams.get(param);
