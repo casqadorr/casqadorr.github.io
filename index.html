@@ -3,20 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>جاري الانتقال...</title>
-    
-    <!-- طريقة تحويل احتياطية في حال كان الجافا سكريبت معطلاً لدى الزائر -->
-    <meta http-equiv="refresh" content="0;url=https://casqadorr.blogspot.com">
-
-    <script>
-        // التحويل الفوري والسريع باستخدام الجافا سكريبت
-        window.location.href = "https://casqadorr.blogspot.com";
-    </script>
+    <title>Casqadorr | منصة تحويل الروابط</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .main-container {
+            max-width: 600px;
+            width: 90%;
+            background: #1e1e1e;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.7);
+        }
+        h1 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #ff9800;
+        }
+        p {
+            color: #aaa;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+        .btn-redirect {
+            display: inline-block;
+            background-color: #ff9800;
+            color: #fff;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.3s;
+            margin-top: 20px;
+        }
+        .btn-redirect:hover {
+            background-color: #e08600;
+        }
+        .ad-section {
+            margin: 25px 0;
+            padding: 15px;
+            background: #252525;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+    </style>
 </head>
 <body>
-    <div style="font-family: Arial, sans-serif; text-align: center; margin-top: 100px; color: #333;">
-        <p>جاري توجيهك إلى مدونة Casqadorr...</p>
-        <p>إذا لم يتم تحويلك تلقائياً، <a href="https://casqadorr.blogspot.com" style="color: #ff9800; font-weight: bold; text-decoration: none;">اضغط هنا</a>.</p>
-    </div>
+
+<div class="main-container">
+    <h1>أهلاً بك في موقع Casqadorr</h1>
+    <p>جاري تحضير الواجهة الرئيسية... يمكنك الانتقال مباشرة للمدونة عبر الزر في الأسفل.</p>
+
+    <div class="ad-section">
+        <div id="frame" style="width: 100%; margin: auto; position: relative; z-index: 99998;">
+            <iframe data-aa='2446003' src='//acceptable.a-ads.com/2446003/?size=Adaptive'
+                    style='border:0; padding:0; width:100%; height:auto; overflow:hidden; display: block; margin: auto'></iframe>
+        </div>
+        </div>
+
+    <a href="https://casqadorr.blogspot.com" class="btn-redirect">الانتقال إلى مدونة Casqadorr الرئيسية</a>
+</div>
+
+<script>
+    // تحويل تلقائي إلى المدونة بعد 7 ثوانٍ لمنح مراجع A-ADS وقتاً لرؤية الإعلان واحتساب المحتوى
+    setTimeout(function() {
+        window.location.href = "https://casqadorr.blogspot.com";
+    }, 7000);
+</script>
+
 </body>
 </html>
