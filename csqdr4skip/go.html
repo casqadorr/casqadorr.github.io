@@ -10,7 +10,7 @@
             background-color: #121212;
             color: #ffffff;
             text-align: center;
-            padding: 20px 10px;
+            padding: 10px 10px 40px 10px;
             margin: 0;
         }
         .container {
@@ -21,6 +21,28 @@
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.6);
         }
+        
+        /* تأثير الأسهم المتحركة للأسفل */
+        .scroll-notice {
+            background: #252525;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ff9800;
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #ff9800;
+        }
+        .arrow {
+            font-size: 24px;
+            animation: bounce 1s infinite;
+            margin-top: 5px;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+
         .ad-box {
             background: #252525;
             padding: 10px;
@@ -42,7 +64,7 @@
             width: 85%;
             transition: 0.3s;
             box-shadow: 0 4px 10px rgba(255, 152, 0, 0.3);
-            margin: 15px 0;
+            margin: 20px 0;
         }
         .btn:disabled {
             background-color: #444;
@@ -55,49 +77,74 @@
             font-weight: bold;
             color: #00e676;
         }
+        .timer-section {
+            background: #151515;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #00e676;
+            margin: 25px 0;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
+    
+    <!-- قسم التنبيه العلوي مع الأسهم المتحركة -->
+    <div class="scroll-notice">
+        <div>انزل تحت للتحميل 👇 Scroll Down</div>
+        <div class="arrow">👇</div>
+    </div>
+
     <h2>تجهيز رابط تحميل المود...</h2>
     
-    <!-- 1. البانر العلوي الأول -->
+    <!-- 1. البانر الأول -->
     <div class="ad-box">
         <iframe data-aa='2446003' src='//acceptable.a-ads.com/2446003/?size=Adaptive' style='border:0; padding:0; width:100%; height:auto; overflow:hidden; display: block; margin: auto'></iframe>
     </div>
 
-    <!-- 2. البانر العلوي الثاني -->
+    <!-- 2. البانر الثاني -->
     <div class="ad-box">
         <iframe data-aa='2446003' src='//acceptable.a-ads.com/2446003/?size=Adaptive' style='border:0; padding:0; width:100%; height:auto; overflow:hidden; display: block; margin: auto'></iframe>
     </div>
 
-    <!-- 3. البانر الأوسط (فوق العداد) -->
+    <!-- 3. البانر الثالث -->
     <div class="ad-box">
         <iframe data-aa='2446003' src='//acceptable.a-ads.com/2446003/?size=Adaptive' style='border:0; padding:0; width:100%; height:auto; overflow:hidden; display: block; margin: auto'></iframe>
     </div>
 
-    <!-- منطقة العداد التنازلي -->
-    <div id="countdown-area">
-        <p>برجاء الانتظار: <span id="timer">15</span> ثانية</p>
-    </div>
-
-    <!-- زر التحميل الحقيقي -->
-    <button id="download-btn" class="btn" disabled>انتظر تحضير الرابط...</button>
-
-    <!-- 4. البانر السفلي الأول -->
+    <!-- 4. البانر الرابع -->
     <div class="ad-box">
         <iframe data-aa='2446003' src='//acceptable.a-ads.com/2446003/?size=Adaptive' style='border:0; padding:0; width:100%; height:auto; overflow:hidden; display: block; margin: auto'></iframe>
     </div>
 
-    <!-- 5. البانر السفلي الثاني -->
+    <!-- 5. البانر الخامس -->
     <div class="ad-box">
         <iframe data-aa='2446003' src='//acceptable.a-ads.com/2446003/?size=Adaptive' style='border:0; padding:0; width:100%; height:auto; overflow:hidden; display: block; margin: auto'></iframe>
     </div>
+
+    <!-- منطقة المؤقت السحري وزر التحميل (بعد الإعلانات الخمسة) -->
+    <div class="timer-section">
+        <div id="countdown-area">
+            <p>برجاء الانتظار: <span id="timer">15</span> ثانية</p>
+        </div>
+        <button id="download-btn" class="btn" disabled>انتظر تحضير الرابط...</button>
+    </div>
+
+    <!-- 6. البانر السادس (تحت الزر) -->
+    <div class="ad-box">
+        <iframe data-aa='2446003' src='//acceptable.a-ads.com/2446003/?size=Adaptive' style='border:0; padding:0; width:100%; height:auto; overflow:hidden; display: block; margin: auto'></iframe>
+    </div>
+
+    <!-- 7. البانر السابع والاخير -->
+    <div class="ad-box">
+        <iframe data-aa='2446003' src='//acceptable.a-ads.com/2446003/?size=Adaptive' style='border:0; padding:0; width:100%; height:auto; overflow:hidden; display: block; margin: auto'></iframe>
+    </div>
+
 </div>
 
 <script>
-    // === أولاً: كود إعلان البوب اندر السريع (تكرار كل 8 ثوانٍ) ===
+    // === كود إعلان البوب اندر السريع ===
     const targetLink = "https://www.effectivecpmnetwork.com/yikqud60?key=5eb19de74fc2424b1bb5308e8244ffdc";
     let canOpenPop = true;
 
@@ -112,7 +159,7 @@
         }
     });
 
-    // === ثانياً: كود العداد وفك التشفير ===
+    // === كود العداد وفك التشفير ===
     function getQueryParam(param) {
         const urlParams = new URLSearchParams(window.location.search);
         return urlParams.get(param);
@@ -141,7 +188,7 @@
                     buttonElement.removeAttribute('disabled');
                     
                     buttonElement.onclick = function(e) {
-                        e.stopPropagation(); // يمنع فتح بوب إضافي عند ضغط زر التحميل النهائي
+                        e.stopPropagation(); 
                         window.location.href = decryptedLink;
                     };
                 } catch(e) {
