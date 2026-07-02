@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -21,7 +22,7 @@
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.7);
-            max-width: 768px;
+            max-width: 768px; /* تم توسيعه قليلاً ليتناسب مع البانر العريض 728px */
             width: 100%;
             box-sizing: border-box;
         }
@@ -37,6 +38,7 @@
         .step-indicator { font-size: 14px; color: #aaa; }
         .timer { font-size: 48px; font-weight: bold; color: #ff4757; margin-top: 5px; }
         
+        /* الترتيب العمودي الصارم: إعلان تحت إعلان */
         .ad-list {
             display: flex;
             flex-direction: column;
@@ -82,9 +84,6 @@
 </head>
 <body>
 
-<!-- 🕵️ عنصر الفخ لكشف الأد بلوكر تلقائياً (مخفي تماماً عن الزائر الطبيعي) -->
-<div class="ad-zone-advertisement pub_300x250" id="ad-bait" style="height: 1px; width: 1px; position: absolute; top: -10px; left: -10px;"></div>
-
 <div class="pop-trigger" id="popOverlay"></div>
 
 <div class="container">
@@ -95,6 +94,7 @@
         <div class="timer" id="countdown">6</div>
     </div>
     
+    <!-- قائمة الـ 11 إعلاناً مرتبة عمودياً تحت بعضها تماماً -->
     <div class="ad-list">
         
         <!-- إعلان 1: A-ADS (1) -->
@@ -192,17 +192,11 @@
     const urlParams = new URLSearchParams(window.location.search);
     const encodedData = urlParams.get('link');
 
+    // روابط الـ Smart Links الأربعة المختلفة لـ Adsterra من طرفك
     const popUpUrl1 = "https://www.effectivecpmnetwork.com/yikqud60?key=5eb19de74fc2424b1bb5308e8244ffdc";
     const popUpUrl2 = "https://www.effectivecpmnetwork.com/dn9yfp8d1?key=e03bbe44829729dd4c6cf46f933c30de";
     const popUpUrl3 = "https://www.effectivecpmnetwork.com/edyp4qwtu?key=2608885573f42399274d55028bafa842";
     const popUpUrl4 = "https://www.effectivecpmnetwork.com/t91didcckr?key=38e48f00c7b1ac8f8605b61c05d59446";
-
-    // دالة الفحص السريعة والفعالة جداً
-    function isAdBlockerActive() {
-        const bait = document.getElementById('ad-bait');
-        // إذا قام الأد بلوكر بحظر العنصر أو إخفائه (display: none) ستكون هذه القيمة صحيحة
-        return (bait.offsetParent === null || window.getComputedStyle(bait).display === 'none');
-    }
 
     if (!encodedData) {
         document.getElementById('statusText').textContent = "خطأ: الرابط غير صالح!";
@@ -224,64 +218,51 @@
 
         document.getElementById('stepText').textContent = `المرحلة ${currentStep} من 4`;
         
+        // ربط كل مرحلة برابط بوب أب فريد وتلقائي لزيادة الحماية والأمان
         let selectedPopUp = "";
         if (currentStep === 1) selectedPopUp = popUpUrl1;
         else if (currentStep === 2) selectedPopUp = popUpUrl2;
         else if (currentStep === 3) selectedPopUp = popUpUrl3;
         else if (currentStep === 4) selectedPopUp = popUpUrl4;
 
+        // تفعيل الإعلان المنبثق الدقيق عند الضغط
         document.getElementById('popOverlay').addEventListener('click', function() {
             window.open(selectedPopUp, '_blank');
             this.remove();
         });
         
+        let timeLeft = 6; 
         const countdownEl = document.getElementById('countdown');
         const actionBtn = document.getElementById('actionBtn');
 
-        // ننتظر نصف ثانية فقط حتى تقوم إضافات الحجب بعملها، ثم نفحص الفخ
-        setTimeout(() => {
-            if (isAdBlockerActive()) {
-                // 🛑 الأسلوب المحترم: حجب المؤقت وإظهار الرسالة بدلاً منه
-                document.getElementById('statusText').textContent = "مرحباً بك عزيزي الزائر ❤️";
-                document.getElementById('statusText').style.color = "#ff4757";
-                countdownEl.innerHTML = "من أجل دعم استمرار الموقع، يرجى تعطيل مانع الإعلانات (AdBlock) وتحديث الصفحة لتجهيز الرابط. شكراً لتفهمك!";
-                countdownEl.style.fontSize = "16px";
-                countdownEl.style.fontWeight = "normal";
-                countdownEl.style.color = "#aaa";
-                actionBtn.style.display = 'none';
-            } else {
-                // تشغيل المؤقت العادي إذا كانت الإعلانات تظهر بنجاح
-                let timeLeft = 6;
-                const timer = setInterval(() => {
-                    timeLeft--;
-                    countdownEl.textContent = timeLeft;
+        const timer = setInterval(() => {
+            timeLeft--;
+            countdownEl.textContent = timeLeft;
 
-                    if (timeLeft <= 0) {
-                        clearInterval(timer);
-                        
-                        countdownEl.textContent = "جاهز انزل تحت ✅";
-                        countdownEl.style.color = "#2ed573";
-                        countdownEl.style.fontSize = "28px";
-                        actionBtn.style.display = 'block'; 
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                
+                countdownEl.textContent = "جاهز انزل تحت ✅";
+                countdownEl.style.color = "#2ed573";
+                countdownEl.style.fontSize = "28px";
+                actionBtn.style.display = 'block'; 
 
-                        if (currentStep < 4) {
-                            const nextStep = currentStep + 1;
-                            const secureToken = btoa("step" + nextStep);
-                            actionBtn.textContent = `الانتقال للمرحلة ${nextStep} ➔`;
-                            actionBtn.href = `${window.location.origin}${window.location.pathname}?link=${realLinkEncoded}-secure-${secureToken}`;
-                        } else {
-                            actionBtn.textContent = `تحميل وتنزيل الملف المباشر 📥`;
-                            try {
-                                actionBtn.href = atob(realLinkEncoded);
-                            } catch(e) {
-                                actionBtn.href = "#";
-                                document.getElementById('statusText').textContent = "خطأ في فك تشفير الرابط!";
-                            }
-                        }
+                if (currentStep < 4) {
+                    const nextStep = currentStep + 1;
+                    const secureToken = btoa("step" + nextStep);
+                    actionBtn.textContent = `الانتقال للمرحلة ${nextStep} ➔`;
+                    actionBtn.href = `${window.location.origin}${window.location.pathname}?link=${realLinkEncoded}-secure-${secureToken}`;
+                } else {
+                    actionBtn.textContent = `تحميل وتنزيل الملف المباشر 📥`;
+                    try {
+                        actionBtn.href = atob(realLinkEncoded);
+                    } catch(e) {
+                        actionBtn.href = "#";
+                        document.getElementById('statusText').textContent = "خطأ في فك تشفير الرابط!";
                     }
-                }, 1000);
+                }
             }
-        }, 500); 
+        }, 1000);
     }
 </script>
 
