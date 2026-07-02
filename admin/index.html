@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Casqadorr Admin v1</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header>
+            <h1>Casqadorr Admin v1</h1>
+            <p>لوحة إدارة الروابط المشفرة</p>
+        </header>
+
+        <section class="generator">
+
+            <h2>إنشاء رابط جديد</h2>
+
+            <label>اسم الملف</label>
+            <input
+                type="text"
+                id="fileName"
+                placeholder="مثال: Mercedes Pack">
+
+            <label>رابط التحميل الأصلي</label>
+            <input
+                type="url"
+                id="originalUrl"
+                placeholder="https://...">
+
+            <button id="generateBtn">
+                إنشاء الرابط
+            </button>
+
+        </section>
+
+        <section class="output">
+
+            <h2>الرابط النهائي</h2>
+
+            <textarea
+                id="finalLink"
+                readonly></textarea>
+
+            <button id="copyLinkBtn">
+                نسخ الرابط
+            </button>
+
+            <h2>زر بلوجر</h2>
+
+            <textarea
+                id="bloggerButton"
+                readonly></textarea>
+
+            <button id="copyButtonBtn">
+                نسخ كود الزر
+            </button>
+
+        </section>
+
+        <section class="history">
+
+            <h2>السجل</h2>
+
+            <input
+                type="text"
+                id="searchBox"
+                placeholder="بحث...">
+
+            <div id="historyContainer">
+
+            </div>
+
+            <div class="history-buttons">
+
+                <button id="exportBtn">
+                    تصدير JSON
+                </button>
+
+                <button id="importBtn">
+                    استيراد JSON
+                </button>
+
+                <button id="clearBtn">
+                    حذف الكل
+                </button>
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <script src="db.js"></script>
+    <script src="app.js"></script>
+
+</body>
+
+</html>
