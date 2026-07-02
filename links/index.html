@@ -1,1 +1,240 @@
-gg
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">جاري تحضير الرابط...</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0b0b0b;
+            color: #ffffff;
+            margin: 0;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            text-align: center;
+            background-color: #141414;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.7);
+            max-width: 768px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .timer-header {
+            background-color: #1a1a1a;
+            border: 2px solid #8a4fff; 
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        h1 { font-size: 20px; margin: 5px 0; color: #2ed573; }
+        .step-indicator { font-size: 14px; color: #aaa; }
+        .timer { font-size: 48px; font-weight: bold; color: #8a4fff; margin-top: 5px; }
+        .ad-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 20px 0;
+            width: 100%;
+            align-items: center;
+        }
+        .ad-box {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .btn {
+            background-color: #2ed573;
+            border-radius: 6px;
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            font-size: 18px;
+            cursor: pointer;
+            text-decoration: none;
+            display: none;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(46, 213, 115, 0.4);
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 15px;
+        }
+        .btn:hover { background-color: #26af5f; }
+        .pop-trigger {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 99999;
+            cursor: pointer;
+            background: transparent;
+        }
+    </style>
+</head>
+<body>
+    <div class="pop-trigger" id="popOverlay"></div>
+    <div class="container">
+        <div class="timer-header">
+            <div class="step-indicator" id="stepText">المرحلة 1 من 4</div>
+            <h1 id="statusText">جار تجهيز رابط التحميل</h1>
+            <div class="timer" id="countdown">6</div>
+        </div>
+        <div class="ad-list">
+            <!-- إعلان 1: A-ADS التكرار 1 -->
+            <div class="ad-box">
+                <div style="width: 100%; margin: auto; position: relative; z-index: 99998;">
+                    <iframe data-aa='2446003' src='//acceptable.a-ads.com/2446003/?size=Adaptive' style='border:0; padding:0; width:70%; height:auto; overflow:hidden; display: block; margin: auto'></iframe>
+                </div>
+            </div>
+            <!-- إعلان 2: Adsterra الكود الأول 468x60 الظهور 1 -->
+            <div class="ad-box">
+                <script>
+                    atOptions = { 'key': '88f1ce91331d314d9ef54baeff209e91', 'format': 'iframe', 'height': 60, 'width': 468, 'params' : {} };
+                </script>
+                <script src="https://www.highperformanceformat.com/88f1ce91331d314d9ef54baeff209e91/invoke.js"></script>
+            </div>
+            <!-- إعلان 3: Adsterra الكود الأول 468x60 الظهور 2 -->
+            <div class="ad-box">
+                <script>
+                    atOptions = { 'key': '88f1ce91331d314d9ef54baeff209e91', 'format': 'iframe', 'height': 60, 'width': 468, 'params' : {} };
+                </script>
+                <script src="https://www.highperformanceformat.com/88f1ce91331d314d9ef54baeff209e91/invoke.js"></script>
+            </div>
+            <!-- إعلان 4: Adsterra الكود الثاني 468x60 الظهور 1 -->
+            <div class="ad-box">
+                <script>
+                    atOptions = { 'key': '88f1ce91331d314d9ef54baeff209e91', 'format': 'iframe', 'height': 60, 'width': 468, 'params' : {} };
+                </script>
+                <script src="https://www.highperformanceformat.com/88f1ce91331d314d9ef54baeff209e91/invoke.js"></script>
+            </div>
+            <!-- إعلان 5: Adsterra الكود الثاني 468x60 الظهور 2 -->
+            <div class="ad-box">
+                <script>
+                    atOptions = { 'key': '88f1ce91331d314d9ef54baeff209e91', 'format': 'iframe', 'height': 60, 'width': 468, 'params' : {} };
+                </script>
+                <script src="https://www.highperformanceformat.com/88f1ce91331d314d9ef54baeff209e91/invoke.js"></script>
+            </div>
+            <!-- إعلان 6: A-ADS التكرار 2 -->
+            <div class="ad-box">
+                <div style="width: 100%; margin: auto; position: relative; z-index: 99998;">
+                    <iframe data-aa='2446003' src='//acceptable.a-ads.com/2446003/?size=Adaptive' style='border:0; padding:0; width:70%; height:auto; overflow:hidden; display: block; margin: auto'></iframe>
+                </div>
+            </div>
+            <!-- إعلان 7: Adsterra الكود الثالث 320x50 الظهور 1 -->
+            <div class="ad-box">
+                <script>
+                    atOptions = { 'key': '6dadbd1c0664a5adfb47016d73be958e', 'format': 'iframe', 'height': 50, 'width': 320, 'params' : {} };
+                </script>
+                <script src="https://www.highperformanceformat.com/6dadbd1c0664a5adfb47016d73be958e/invoke.js"></script>
+            </div>
+            <!-- إعلان 8: Adsterra الكود الثالث 320x50 الظهور 2 -->
+            <div class="ad-box">
+                <script>
+                    atOptions = { 'key': '6dadbd1c0664a5adfb47016d73be958e', 'format': 'iframe', 'height': 50, 'width': 320, 'params' : {} };
+                </script>
+                <script src="https://www.highperformanceformat.com/6dadbd1c0664a5adfb47016d73be958e/invoke.js"></script>
+            </div>
+            <!-- إعلان 9: Adsterra الكود الرابع 728x90 الظهور 1 -->
+            <div class="ad-box">
+                <script>
+                    atOptions = { 'key': 'a5b4e81144b7f1b6gen351630841aab53', 'format': 'iframe', 'height': 90, 'width': 728, 'params' : {} };
+                </script>
+                <script src="https://www.highperformanceformat.com/a5b4e81144b7f1b6eb351630841aab53/invoke.js"></script>
+            </div>
+            <!-- إعلان 10: Adsterra الكود الرابع 728x90 الظهور 2 -->
+            <div class="ad-box">
+                <script>
+                    atOptions = { 'key': 'a5b4e81144b7f1b6eb351630841aab53', 'format': 'iframe', 'height': 90, 'width': 728, 'params': {} };
+                </script>
+                <script src="https://www.highperformanceformat.com/a5b4e81144b7f1b6eb351630841aab53/invoke.js"></script>
+            </div>
+            <!-- إعلان 11: A-ADS التكرار 3 -->
+            <div class="ad-box">
+                <div style="width: 100%; margin: auto; position: relative; z-index: 99998;">
+                    <iframe data-aa='2446003' src='//acceptable.a-ads.com/2446003/?size=Adaptive' style='border:0; padding:0; width:70%; height:auto; overflow:hidden; display: block; margin: auto'></iframe>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="btn" id="actionBtn">اضغط للتخطي</a>
+    </div>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const encodedData = urlParams.get('link');
+
+    const popUpUrl1 = "https://www.effectivecpmnetwork.com/yikqud60?key=5eb19de74fc2424b1bb5308e8244ffdc";
+    const popUpUrl2 = "https://www.effectivecpmnetwork.com/dn9yfp8d1?key=e03bbe44829729dd4c6cf46f933c30de";
+    const popUpUrl3 = "https://www.effectivecpmnetwork.com/edyp4qwtu?key=2608885573f42399274d55028bafa842";
+    const popUpUrl4 = "https://www.effectivecpmnetwork.com/t91didcckr?key=38e48f00c7b1ac8f8605b61c05d59446";
+
+    if (!encodedData) {
+        document.getElementById('statusText').textContent = "خطأ: الرابط غير صالح!";
+        document.getElementById('countdown').style.display = 'none';
+    } else {
+        let currentStep = 1;
+        let realLinkEncoded = encodedData;
+
+        if (encodedData.includes("-secure-")) {
+            const parts = encodedData.split("-secure-");
+            realLinkEncoded = parts[0];
+            const token = parts[1];
+
+            if (token === btoa("step2")) currentStep = 2;
+            else if (token === btoa("step3")) currentStep = 3;
+            else if (token === btoa("step4")) currentStep = 4;
+            else currentStep = 1;
+        }
+
+        document.getElementById('stepText').textContent = `المرحلة ${currentStep} من 4`;
+        
+        let selectedPopUp = "";
+        if (currentStep === 1) selectedPopUp = popUpUrl1;
+        else if (currentStep === 2) selectedPopUp = popUpUrl2;
+        else if (currentStep === 3) selectedPopUp = popUpUrl3;
+        else if (currentStep === 4) selectedPopUp = popUpUrl4;
+
+        document.getElementById('popOverlay').addEventListener('click', function() {
+            window.open(selectedPopUp, '_blank');
+            this.remove();
+        });
+        
+        let timeLeft = 6;
+        const countdownEl = document.getElementById('countdown');
+        const actionBtn = document.getElementById('actionBtn');
+
+        const timer = setInterval(() => {
+            timeLeft--;
+            countdownEl.textContent = timeLeft;
+
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                countdownEl.textContent = "جاهز انزل تحت ✅";
+                countdownEl.style.color = "#2ed573";
+                countdownEl.style.fontSize = "28px";
+                actionBtn.style.display = 'block';
+
+                if (currentStep < 4) {
+                    const nextStep = currentStep + 1;
+                    const secureToken = btoa("step" + nextStep);
+                    actionBtn.textContent = `الانتقال للمرحلة ${nextStep} ➔`;
+                    actionBtn.href = `${window.location.origin}${window.location.pathname}?link=${realLinkEncoded}-secure-${secureToken}`;
+                } else {
+                    actionBtn.textContent = "تحميل وتنزيل الملف المباشر 📥";
+                    try {
+                        actionBtn.href = atob(realLinkEncoded);
+                    } catch(e) {
+                        actionBtn.href = "#";
+                        document.getElementById('statusText').textContent = "خطأ في فك تشفير الرابط!";
+                    }
+                }
+            }
+        }, 1000);
+    }
+</script>
+</body>
+</html>
