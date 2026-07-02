@@ -18,50 +18,69 @@
         .container {
             text-align: center;
             background-color: #141414;
-            padding: 25px;
+            padding: 20px;
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.7);
             max-width: 600px;
             width: 100%;
-            margin-top: 20px;
+            box-sizing: border-box;
         }
-        h1 { font-size: 22px; margin-bottom: 15px; color: #2ed573; }
-        .step-indicator { font-size: 14px; color: #aaa; margin-bottom: 10px; }
-        .timer { font-size: 54px; font-weight: bold; color: #ff4757; margin: 15px 0; }
-        .btn {
-            background-color: #2ed573;
-            color: white;
-            border: none;
-            padding: 14px 35px;
-            font-size: 18px;
-            border-radius: 6px;
-            cursor: pointer;
-            text-decoration: none;
-            display: none;
-            font-weight: bold;
-            box-shadow: 0 4px 10px rgba(46, 213, 115, 0.4);
-        }
-        .btn:hover { background-color: #26af5f; }
         
-        /* شبكة الإعلانات الـ 10 */
-        .ad-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 10px;
+        /* تصميم المؤقت في أعلى الصفحة */
+        .timer-header {
+            background-color: #1a1a1a;
+            border: 2px solid #ff4757;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        h1 { font-size: 20px; margin: 5px 0; color: #2ed573; }
+        .step-indicator { font-size: 14px; color: #aaa; }
+        .timer { font-size: 48px; font-weight: bold; color: #ff4757; margin-top: 5px; }
+        
+        /* ترتيب الإعلانات: إعلان تحت إعلان */
+        .ad-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
             margin: 20px 0;
+            width: 100%;
         }
         .ad-box {
             background-color: #1f1f1f;
             border: 1px dashed #444;
-            padding: 10px;
-            border-radius: 6px;
-            min-height: 80px;
+            padding: 15px;
+            border-radius: 8px;
+            min-height: 90px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 12px;
-            color: #666;
+            font-size: 14px;
+            color: #888;
+            box-sizing: border-box;
+            width: 100%;
         }
+        
+        /* الزر السفلي */
+        .btn {
+            background-color: #2ed573;
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            font-size: 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            display: none; /* يظهر بعد انتهاء العداد */
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(46, 213, 115, 0.4);
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 15px;
+        }
+        .btn:hover { background-color: #26af5f; }
+        
+        /* طبقة البوب أب الشفافة */
         .pop-trigger {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -73,26 +92,24 @@
 </head>
 <body>
 
-<!-- طبقة البوب أب الشفافة -->
+<!-- طبقة البوب أب لتشغيل رابط الإعلانات الخاص بك -->
 <div class="pop-trigger" id="popOverlay"></div>
 
 <div class="container">
-    <div class="step-indicator" id="stepText">المرحلة 1 من 3</div>
-    <h1 id="statusText">انتظر قليلاً لتجهيز الرابط الآمن...</h1>
     
-    <!-- إعلانات علوية -->
-    <div class="ad-grid">
+    <!-- قسم المؤقت في القمة فوق كل شيء -->
+    <div class="timer-header">
+        <div class="step-indicator" id="stepText">المرحلة 1 من 4</div>
+        <h1 id="statusText">انتظر تجهيز الرابط الآمن...</h1>
+        <div class="timer" id="countdown">6</div>
+    </div>
+    
+    <!-- قائمة الـ 10 إعلانات المتتالية عمودياً -->
+    <div class="ad-list">
         <div class="ad-box"><!-- كود إعلان 1 -->إعلان 1</div>
         <div class="ad-box"><!-- كود إعلان 2 -->إعلان 2</div>
         <div class="ad-box"><!-- كود إعلان 3 -->إعلان 3</div>
         <div class="ad-box"><!-- كود إعلان 4 -->إعلان 4</div>
-    </div>
-
-    <div class="timer" id="countdown">6</div>
-    <a href="#" class="btn" id="actionBtn">اضغط للتخطي</a>
-
-    <!-- إعلانات سفلية -->
-    <div class="ad-grid">
         <div class="ad-box"><!-- كود إعلان 5 -->إعلان 5</div>
         <div class="ad-box"><!-- كود إعلان 6 -->إعلان 6</div>
         <div class="ad-box"><!-- كود إعلان 7 -->إعلان 7</div>
@@ -100,15 +117,20 @@
         <div class="ad-box"><!-- كود إعلان 9 -->إعلان 9</div>
         <div class="ad-box"><!-- كود إعلان 10 -->إعلان 10</div>
     </div>
+
+    <!-- الزر السفلي الذي يتم تفعيله بعد المؤقت -->
+    <a href="#" class="btn" id="actionBtn">اضغط للتخطي</a>
+
 </div>
 
 <script>
     const urlParams = new URLSearchParams(window.location.search);
     const encodedData = urlParams.get('link');
 
-    // رابط البوب أب الخاص بك
-    const popUpUrl = "https://www.example-ad-network.com/pop"; 
+    // رابط البوب أب الخاص بك المباشر
+    const popUpUrl = "https://www.effectivecpmnetwork.com/yikqud60?key=5eb19de74fc2424b1bb5308e8244ffdc"; 
 
+    // فتح الإعلان المنبثق عند أول ضغطة عشوائية في الصفحة
     document.getElementById('popOverlay').addEventListener('click', function() {
         window.open(popUpUrl, '_blank');
         this.remove();
@@ -121,23 +143,21 @@
         let currentStep = 1;
         let realLinkEncoded = encodedData;
 
-        // فحص التشفير: هل يحتوي الرابط على علامة الفاصل للخطوات المقفلة؟
+        // فك حماية الخطوات (الـ 4 خطوات الصارمة)
         if (encodedData.includes("-st")) {
             const parts = encodedData.split("-st");
-            realLinkEncoded = parts[0]; // الرابط الأصلي المشفر
-            
+            realLinkEncoded = parts[0];
             try {
-                // فك تشفير الخطوة الحالية للتأكد من عدم التلاعب بها
                 currentStep = parseInt(atob(parts[1])) || 1;
             } catch(e) {
-                currentStep = 1; // إذا حدث خطأ أو تلاعب، نعيده للمرحلة الأولى
+                currentStep = 1;
             }
         }
 
-        // تحديث واجهة المستخدم بناءً على الخطوة الحالية الآمنة
-        document.getElementById('stepText').textContent = `المرحلة ${currentStep} من 3`;
+        // تحديث نص العداد بناءً على الخطوة (من 1 إلى 4)
+        document.getElementById('stepText').textContent = `المرحلة ${currentStep} من 4`;
         
-        let timeLeft = 6; // مؤقت 6 ثوانٍ ثابث وصارم
+        let timeLeft = 6; 
         const countdownEl = document.getElementById('countdown');
         const actionBtn = document.getElementById('actionBtn');
 
@@ -147,24 +167,24 @@
 
             if (timeLeft <= 0) {
                 clearInterval(timer);
-                countdownEl.style.display = 'none';
-                actionBtn.style.display = 'inline-block';
+                countdownEl.textContent = "جاهز ✅";
+                countdownEl.style.color = "#2ed573";
+                actionBtn.style.display = 'block'; 
 
-                if (currentStep < 3) {
-                    // الانتقال للخطوة التالية مع تشفير رقم الخطوة الجديدة القادمة وحمايتها
+                if (currentStep < 4) {
+                    // الانتقال للخطوات التالية صعوداً حتى الخطوة 4
                     const nextStep = currentStep + 1;
                     const encodedNextStep = btoa(nextStep.toString());
-                    
-                    actionBtn.textContent = `الانتقال للمرحلة ${nextStep}`;
+                    actionBtn.textContent = `الانتقال للمرحلة ${nextStep} ➔`;
                     actionBtn.href = `${window.location.origin}${window.location.pathname}?link=${realLinkEncoded}-st${encodedNextStep}`;
                 } else {
-                    // المرحلة الثالثة والأخيرة: فك تشفير الرابط النهائي والتوجه للتحميل النهائي (Download)
+                    // المرحلة الرابعة والأخيرة: فك تشفير الرابط والتحميل
                     actionBtn.textContent = `تحميل وتنزيل الملف المباشر 📥`;
                     try {
                         actionBtn.href = atob(realLinkEncoded);
                     } catch(e) {
                         actionBtn.href = "#";
-                        document.getElementById('statusText').textContent = "خطأ في فك تشفير الرابط النهائي!";
+                        document.getElementById('statusText').textContent = "خطأ في فك تشفير الرابط!";
                     }
                 }
             }
