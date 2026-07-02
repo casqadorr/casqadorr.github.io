@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Step 2</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1 id="title">
+
+الخطوة الثانية
+
+</h1>
+
+<p id="message">
+
+انزل للأسفل لإكمال التحميل.
+
+</p>
+
+<div id="ads1"></div>
+
+<div id="ads2"></div>
+
+<div id="ads3"></div>
+
+<div id="ads4"></div>
+
+<div id="ads5"></div>
+
+<div id="ads6"></div>
+
+<div id="ads7"></div>
+
+<div id="ads8"></div>
+
+<div id="ads9"></div>
+
+<p>
+
+يرجى الانتظار
+
+<span id="timer">10</span>
+
+ثوانٍ
+
+</p>
+
+<button
+id="nextBtn"
+disabled>
+
+الانتقال للخطوة الثالثة
+
+</button>
+
+<footer>
+
+© Casqadorr
+
+</footer>
+
+</div>
+
+<script src="config.js"></script>
+<script src="ads.js"></script>
+<script src="common.js"></script>
+
+<script>
+
+if(!isValidLink()){
+
+document.getElementById("title").innerText="ملفك غير موجود";
+
+document.getElementById("message").innerHTML=`
+<a href="https://youtube.com/@casqadorr" target="_blank">
+قناة يوتيوب
+</a>
+`;
+
+}else{
+
+startTimer(CONFIG.TIMER,function(){
+
+const btn=document.getElementById("nextBtn");
+
+btn.disabled=false;
+
+btn.onclick=function(){
+
+next(CONFIG.STEP3);
+
+};
+
+});
+
+}
+
+</script>
+
+</body>
+</html>
