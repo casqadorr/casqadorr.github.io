@@ -26,7 +26,6 @@
             box-sizing: border-box;
         }
         
-        /* تصميم المؤقت في أعلى الصفحة */
         .timer-header {
             background-color: #1a1a1a;
             border: 2px solid #ff4757;
@@ -38,7 +37,6 @@
         .step-indicator { font-size: 14px; color: #aaa; }
         .timer { font-size: 48px; font-weight: bold; color: #ff4757; margin-top: 5px; }
         
-        /* ترتيب الإعلانات: إعلان تحت إعلان */
         .ad-list {
             display: flex;
             flex-direction: column;
@@ -61,7 +59,6 @@
             width: 100%;
         }
         
-        /* الزر السفلي */
         .btn {
             background-color: #2ed573;
             color: white;
@@ -71,7 +68,7 @@
             border-radius: 6px;
             cursor: pointer;
             text-decoration: none;
-            display: none; /* يظهر بعد انتهاء العداد */
+            display: none;
             font-weight: bold;
             box-shadow: 0 4px 10px rgba(46, 213, 115, 0.4);
             width: 100%;
@@ -80,7 +77,6 @@
         }
         .btn:hover { background-color: #26af5f; }
         
-        /* طبقة البوب أب الشفافة */
         .pop-trigger {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -92,33 +88,29 @@
 </head>
 <body>
 
-<!-- طبقة البوب أب لتشغيل رابط الإعلانات الخاص بك -->
 <div class="pop-trigger" id="popOverlay"></div>
 
 <div class="container">
     
-    <!-- قسم المؤقت في القمة فوق كل شيء -->
     <div class="timer-header">
         <div class="step-indicator" id="stepText">المرحلة 1 من 4</div>
-        <h1 id="statusText">انتظر تجهيز الرابط الآمن...</h1>
+        <h1 id="statusText">جار تجهيز رابط التحميل</h1>
         <div class="timer" id="countdown">6</div>
     </div>
     
-    <!-- قائمة الـ 10 إعلانات المتتالية عمودياً -->
     <div class="ad-list">
-        <div class="ad-box"><!-- كود إعلان 1 -->إعلان 1</div>
-        <div class="ad-box"><!-- كود إعلان 2 -->إعلان 2</div>
-        <div class="ad-box"><!-- كود إعلان 3 -->إعلان 3</div>
-        <div class="ad-box"><!-- كود إعلان 4 -->إعلان 4</div>
-        <div class="ad-box"><!-- كود إعلان 5 -->إعلان 5</div>
-        <div class="ad-box"><!-- كود إعلان 6 -->إعلان 6</div>
-        <div class="ad-box"><!-- كود إعلان 7 -->إعلان 7</div>
-        <div class="ad-box"><!-- كود إعلان 8 -->إعلان 8</div>
-        <div class="ad-box"><!-- كود إعلان 9 -->إعلان 9</div>
-        <div class="ad-box"><!-- كود إعلان 10 -->إعلان 10</div>
+        <div class="ad-box">إعلان 1</div>
+        <div class="ad-box">إعلان 2</div>
+        <div class="ad-box">إعلان 3</div>
+        <div class="ad-box">إعلان 4</div>
+        <div class="ad-box">إعلان 5</div>
+        <div class="ad-box">إعلان 6</div>
+        <div class="ad-box">إعلان 7</div>
+        <div class="ad-box">إعلان 8</div>
+        <div class="ad-box">إعلان 9</div>
+        <div class="ad-box">إعلان 10</div>
     </div>
 
-    <!-- الزر السفلي الذي يتم تفعيله بعد المؤقت -->
     <a href="#" class="btn" id="actionBtn">اضغط للتخطي</a>
 
 </div>
@@ -127,10 +119,9 @@
     const urlParams = new URLSearchParams(window.location.search);
     const encodedData = urlParams.get('link');
 
-    // رابط البوب أب الخاص بك المباشر
-    const popUpUrl = "https://www.effectivecpmnetwork.com/yikqud60?key=5eb19de74fc2424b1bb5308e8244ffdc"; 
+    // تم تغيير الرابط مؤقتاً إلى Google للتجربة الآمنة وضمان عدم الحظر
+    const popUpUrl = "https://www.google.com"; 
 
-    // فتح الإعلان المنبثق عند أول ضغطة عشوائية في الصفحة
     document.getElementById('popOverlay').addEventListener('click', function() {
         window.open(popUpUrl, '_blank');
         this.remove();
@@ -143,18 +134,17 @@
         let currentStep = 1;
         let realLinkEncoded = encodedData;
 
-        // فك حماية الخطوات (الـ 4 خطوات الصارمة)
-        if (encodedData.includes("-st")) {
-            const parts = encodedData.split("-st");
+        if (encodedData.includes("-secure-")) {
+            const parts = encodedData.split("-secure-");
             realLinkEncoded = parts[0];
-            try {
-                currentStep = parseInt(atob(parts[1])) || 1;
-            } catch(e) {
-                currentStep = 1;
-            }
+            const token = parts[1];
+
+            if (token === btoa("step2")) currentStep = 2;
+            else if (token === btoa("step3")) currentStep = 3;
+            else if (token === btoa("step4")) currentStep = 4;
+            else currentStep = 1;
         }
 
-        // تحديث نص العداد بناءً على الخطوة (من 1 إلى 4)
         document.getElementById('stepText').textContent = `المرحلة ${currentStep} من 4`;
         
         let timeLeft = 6; 
@@ -167,18 +157,18 @@
 
             if (timeLeft <= 0) {
                 clearInterval(timer);
-                countdownEl.textContent = "جاهز ✅";
+                
+                countdownEl.textContent = "جاهز انزل تحت ✅";
                 countdownEl.style.color = "#2ed573";
+                countdownEl.style.fontSize = "28px";
                 actionBtn.style.display = 'block'; 
 
                 if (currentStep < 4) {
-                    // الانتقال للخطوات التالية صعوداً حتى الخطوة 4
                     const nextStep = currentStep + 1;
-                    const encodedNextStep = btoa(nextStep.toString());
+                    const secureToken = btoa("step" + nextStep);
                     actionBtn.textContent = `الانتقال للمرحلة ${nextStep} ➔`;
-                    actionBtn.href = `${window.location.origin}${window.location.pathname}?link=${realLinkEncoded}-st${encodedNextStep}`;
+                    actionBtn.href = `${window.location.origin}${window.location.pathname}?link=${realLinkEncoded}-secure-${secureToken}`;
                 } else {
-                    // المرحلة الرابعة والأخيرة: فك تشفير الرابط والتحميل
                     actionBtn.textContent = `تحميل وتنزيل الملف المباشر 📥`;
                     try {
                         actionBtn.href = atob(realLinkEncoded);
