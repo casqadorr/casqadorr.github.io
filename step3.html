@@ -99,7 +99,9 @@ btn.disabled=false;
 
 btn.onclick=function(){
 
-next(CONFIG.STEP3);
+    sessionStorage.setItem("csq4s_step", "3");
+
+    next(CONFIG.DOWNLOAD);
 
 };
 
