@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CSQ4S Generator</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div id="app">
+
+    <!-- Header -->
+
+    <header>
+
+        <h1>CSQ4S Generator</h1>
+
+        <p>لوحة إدارة وإنشاء الروابط</p>
+
+    </header>
+
+    <!-- Navigation -->
+
+    <nav>
+
+        <button id="navGenerate">
+
+            إنشاء رابط
+
+        </button>
+
+        <button id="navHistory">
+
+            السجل
+
+        </button>
+
+        <button id="navSettings">
+
+            الإعدادات
+
+        </button>
+
+        <button id="navTools">
+
+            الأدوات
+
+        </button>
+
+    </nav>
+
+    <!-- Main -->
+
+    <main>
+
+        <!-- ===================== -->
+        <!-- Generate -->
+        <!-- ===================== -->
+
+        <section id="pageGenerate">
+
+            <h2>
+
+                إنشاء رابط جديد
+
+            </h2>
+
+            <label>
+
+                اسم الملف
+
+            </label>
+
+            <input
+                id="fileName"
+                type="text"
+                placeholder="مثال : GTA V">
+
+            <label>
+
+                الرابط الأصلي
+
+            </label>
+
+            <input
+                id="originalUrl"
+                type="url"
+                placeholder="https://">
+
+            <button id="generateButton">
+
+                إنشاء الرابط
+
+            </button>
+
+            <hr>
+
+            <h3>
+
+                الرابط النهائي
+
+            </h3>
+
+            <textarea
+                id="finalLink"
+                readonly></textarea>
+
+            <button id="copyLink">
+
+                نسخ الرابط
+
+            </button>
+
+            <hr>
+
+            <h3>
+
+                كود HTML
+
+            </h3>
+
+            <textarea
+                id="htmlCode"
+                readonly></textarea>
+
+            <button id="copyHtml">
+
+                نسخ الكود
+
+            </button>
+
+            <button id="previewButton">
+
+                معاينة
+
+            </button>
+
+        </section>
+
+        <!-- ===================== -->
+        <!-- History -->
+        <!-- ===================== -->
+
+        <section id="pageHistory" hidden>
+
+            <h2>
+
+                السجل
+
+            </h2>
+
+            <input
+                id="historySearch"
+                type="text"
+                placeholder="بحث...">
+
+            <table>
+
+                <thead>
+
+                <tr>
+
+                    <th>
+
+                        الاسم
+
+                    </th>
+
+                    <th>
+
+                        التاريخ
+
+                    </th>
+
+                    <th>
+
+                        الرابط
+
+                    </th>
+
+                    <th>
+
+                        حذف
+
+                    </th>
+
+                </tr>
+
+                </thead>
+
+                <tbody id="historyTable">
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+        <!-- ===================== -->
+        <!-- Settings -->
+        <!-- ===================== -->
+
+        <section id="pageSettings" hidden>
+
+            <h2>
+
+                الإعدادات
+
+            </h2>
+
+            <label>
+
+                رابط الموقع
+
+            </label>
+
+            <input
+                id="siteUrl"
+                type="text">
+
+            <label>
+
+                عدد الخطوات
+
+            </label>
+
+            <input
+                id="steps"
+                type="number">
+
+            <label>
+
+                مدة الانتظار
+
+            </label>
+
+            <input
+                id="timer"
+                type="number">
+
+            <button id="saveSettings">
+
+                حفظ
+
+            </button>
+
+        </section>
+
+        <!-- ===================== -->
+        <!-- Tools -->
+        <!-- ===================== -->
+
+        <section id="pageTools" hidden>
+
+            <h2>
+
+                الأدوات
+
+            </h2>
+
+            <button id="exportData">
+
+                تصدير JSON
+
+            </button>
+
+            <button id="importData">
+
+                استيراد JSON
+
+            </button>
+
+            <button id="clearData">
+
+                حذف جميع البيانات
+
+            </button>
+
+        </section>
+
+    </main>
+
+    <footer>
+
+        © Casqadorr
+
+    </footer>
+
+</div>
+
+<script src="db.js"></script>
+
+<script src="history.js"></script>
+
+<script src="settings.js"></script>
+
+<script src="export.js"></script>
+
+<script src="import.js"></script>
+
+<script src="app.js"></script>
+
+</body>
+
+</html>
