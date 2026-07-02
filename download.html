@@ -66,7 +66,13 @@
 <script src="common.js"></script>
 
 <script>
+if (sessionStorage.getItem("csq4s_step") !== "3") {
 
+    window.location.href = "step1.html?to=" + encodeURIComponent(encoded);
+
+}
+
+if(!isValidLink()){
 if(!isValidLink()){
 
 document.getElementById("title").innerText="ملفك غير موجود";
