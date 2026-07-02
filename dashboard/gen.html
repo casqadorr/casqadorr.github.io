@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CSQ4S Admin</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="genContainer">
+
+    <!-- Header -->
+
+    <header class="genHeader">
+
+        <div class="genLogo">
+
+            <h1 class="genTitle">
+                CSQ4S Admin
+            </h1>
+
+            <p class="genDescription">
+                لوحة إدارة وإنشاء روابط Casqadorr
+            </p>
+
+        </div>
+
+    </header>
+
+    <!-- إنشاء الرابط -->
+
+    <section class="genCard genCreateCard">
+
+        <h2 class="genCardTitle">
+            إنشاء رابط جديد
+        </h2>
+
+        <div class="genField">
+
+            <label class="genLabel">
+                اسم الملف
+            </label>
+
+            <input
+                class="genInput"
+                id="genFileName"
+                type="text"
+                placeholder="مثال: GTA V Mod">
+
+        </div>
+
+        <div class="genField">
+
+            <label class="genLabel">
+                الرابط الأصلي
+            </label>
+
+            <input
+                class="genInput"
+                id="genOriginalUrl"
+                type="url"
+                placeholder="https://">
+
+        </div>
+
+        <button
+            class="genButton genPrimaryButton"
+            id="genGenerateButton">
+
+            إنشاء الرابط
+
+        </button>
+
+    </section>
+
+    <!-- النتائج -->
+
+    <section class="genCard genOutputCard">
+
+        <h2 class="genCardTitle">
+            الرابط النهائي
+        </h2>
+
+        <textarea
+            class="genTextarea"
+            id="genFinalLink"
+            readonly></textarea>
+
+        <button
+            class="genButton"
+            id="genCopyLinkButton">
+
+            نسخ الرابط
+
+        </button>
+
+        <h2 class="genCardTitle">
+            كود HTML
+        </h2>
+
+        <textarea
+            class="genTextarea"
+            id="genHtmlCode"
+            readonly></textarea>
+
+        <button
+            class="genButton"
+            id="genCopyHtmlButton">
+
+            نسخ الكود
+
+        </button>
+
+    </section>
+
+    <!-- السجل -->
+
+    <section class="genCard genHistoryCard">
+
+        <h2 class="genCardTitle">
+
+            السجل
+
+        </h2>
+
+        <input
+            class="genInput"
+            id="genSearchInput"
+            type="text"
+            placeholder="بحث...">
+
+        <div
+            class="genHistoryContainer"
+            id="genHistoryContainer">
+
+        </div>
+
+    </section>
+
+    <!-- الأدوات -->
+
+    <section class="genCard genToolsCard">
+
+        <h2 class="genCardTitle">
+
+            الأدوات
+
+        </h2>
+
+        <button
+            class="genButton"
+            id="genExportButton">
+
+            تصدير JSON
+
+        </button>
+
+        <button
+            class="genButton"
+            id="genImportButton">
+
+            استيراد JSON
+
+        </button>
+
+        <button
+            class="genButton genDangerButton"
+            id="genClearButton">
+
+            حذف جميع الروابط
+
+        </button>
+
+    </section>
+
+    <footer class="genFooter">
+
+        © Casqadorr
+
+    </footer>
+
+</div>
+
+</body>
+
+</html>
