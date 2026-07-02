@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Admin Panel</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>Admin Panel</h1>
+        <p>Create Protected Download Links</p>
+    </div>
+
+    <div class="card">
+
+        <label>Download URL</label>
+
+        <input
+        type="text"
+        id="downloadUrl"
+        placeholder="https://example.com/file.zip">
+
+        <button id="generateBtn">
+            Generate Link
+        </button>
+
+    </div>
+
+    <div class="card">
+
+        <h2>Generated Link</h2>
+
+        <input
+        type="text"
+        id="generatedLink"
+        readonly>
+
+        <button id="copyBtn">
+            Copy Link
+        </button>
+
+    </div>
+
+    <div class="toolbar">
+
+        <button id="exportBtn">
+            Export JSON
+        </button>
+
+        <button id="importBtn">
+            Import JSON
+        </button>
+
+        <button id="clearBtn">
+            Clear All
+        </button>
+
+        <input
+        type="file"
+        id="jsonFile"
+        accept=".json"
+        hidden>
+
+    </div>
+
+    <div class="searchBox">
+
+        <input
+        type="text"
+        id="searchInput"
+        placeholder="Search...">
+
+    </div>
+
+    <div class="table">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Original URL</th>
+
+                    <th>Short Link</th>
+
+                    <th>Date</th>
+
+                    <th>Actions</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="tableBody">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<script src="admin.js"></script>
+
+</body>
+</html>
