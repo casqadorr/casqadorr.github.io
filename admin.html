@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>Casqadorr Admin</title>
+    <style>
+        body { font-family: sans-serif; background: #2c3e50; color: white; padding: 20px; text-align: center; }
+        .panel { background: #34495e; padding: 20px; border-radius: 10px; max-width: 400px; margin: auto; }
+        input { width: 90%; padding: 10px; margin: 10px 0; border-radius: 5px; border: none; }
+        button { padding: 10px 20px; background: #27ae60; color: white; border: none; cursor: pointer; border-radius: 5px; margin: 5px; }
+        #copyBtn { background: #3498db; display: none; }
+    </style>
+</head>
+<body>
+
+    <div class="panel">
+        <h2>توليد رابط التخطي</h2>
+        <input type="text" id="targetUrl" placeholder="ضع الرابط النهائي هنا">
+        <button onclick="generateLink()">توليد الرابط</button>
+        <p id="result"></p>
+        <button id="copyBtn" onclick="copyLink()">نسخ الرابط</button>
+    </div>
+
+    <script>
+        function generateLink() {
+            const url = document.getElementById("targetUrl").value;
+            if(!url) return;
+            
+            const encoded = btoa(url);
+            const finalLink = `https://casqadorr.github.io/skip.html?r=${encoded}`;
+            
+            const res = document.getElementById("result");
+            res.innerHTML = finalLink;
+            document.getElementById("copyBtn").style.display = "inline-block";
+        }
+
+        function copyLink() {
+            const text = document.getElementById("result").innerText;
+            navigator.clipboard.writeText(text);
+        }
+    </script>
+</body>
+</html>
