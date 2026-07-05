@@ -1,1 +1,88 @@
-.
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSQ4S - Attack N' Destroy</title>
+    <style>
+        :root { --accent: #00ff41; --bg: #0a0a0a; --text: #ffffff; }
+        body { background: var(--bg); color: var(--text); font-family: sans-serif; text-align: center; margin: 0; padding: 20px; }
+        .container { max-width: 600px; margin: auto; }
+        .ad-slot { min-height: 50px; margin: 10px 0; border: 1px solid #333; }
+        #overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; cursor: pointer; }
+        #continueBtn { background: var(--accent); color: black; border: none; padding: 15px 30px; font-weight: bold; cursor: not-allowed; opacity: 0.5; margin-top: 20px; }
+        footer { margin-top: 50px; font-size: 12px; color: #666; }
+    </style>
+</head>
+<body>
+
+<div id="overlay"></div> <!-- للـ Pop-up -->
+
+<div class="container">
+    <h1 id="stepTitle">جاري التحميل...</h1>
+    <p>انزل تحت واضغط استمرار لكي تحصل على الرابط!</p>
+
+    <!-- حاويات الإعلانات الـ 25 -->
+    <div id="ads-container"></div>
+
+    <button id="continueBtn" disabled>انتظر 14 ثانية...</button>
+
+    <footer>
+        &copy; 2026 Attack N' Destroy - جميع الحقوق محفوظة.
+    </footer>
+</div>
+
+<script>
+    // 1. منطق الخطوات
+    const params = new URLSearchParams(window.location.search);
+    let step = parseInt(params.get('step')) || 1;
+    if (step > 4) step = 4;
+    document.getElementById('stepTitle').innerText = `${step}/4`;
+
+    // 2. تحميل الإعلانات الـ 25
+    const adContainer = document.getElementById('ads-container');
+    for (let i = 1; i <= 25; i++) {
+        let div = document.createElement('div');
+        div.className = 'ad-slot';
+        div.id = `ad-${i}`;
+        adContainer.appendChild(div);
+        // استدعاء السكريبت الخارجي
+        let script = document.createElement('script');
+        script.src = `https://casqadorr.github.io/csq4s/ads/${i}.js`;
+        document.body.appendChild(script);
+    }
+
+    // 3. زر الاستمرار والمنطق
+    const btn = document.getElementById('continueBtn');
+    setTimeout(() => {
+        btn.disabled = false;
+        btn.style.opacity = "1";
+        btn.style.cursor = "pointer";
+        btn.innerText = "استمرار";
+    }, 14000);
+
+    // الرابط النهائي مشفر بـ Base64
+    const finalLink = "aHR0cHM6Ly95b3VyLWZpbmFsLWxpbmsuY29t"; 
+
+    btn.onclick = () => {
+        // فتح الإعلان (Pop-up)
+        window.open("https://ad-link-here.com", "_blank");
+        
+        if (step < 4) {
+            // الانتقال للخطوة التالية
+            window.location.href = `download.html?step=${step + 1}`;
+        } else {
+            // فك التشفير والتوجه للرابط
+            window.location.href = atob(finalLink);
+        }
+    };
+
+    // 4. تفعيل الـ Pop-up عند الضغط على Overlay
+    document.getElementById('overlay').onclick = () => {
+        window.open("https://ad-link-here.com", "_blank");
+        document.getElementById('overlay').style.display = "none";
+    };
+</script>
+
+</body>
+</html>
