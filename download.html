@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>Download | Attack N' Destroy</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; background: #f4f7f6; padding: 20px; }
+        .container { background: white; padding: 30px; border-radius: 10px; max-width: 500px; margin: auto; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .btn { display: none; background: #007bff; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>CASQADORR</h1>
+    <!-- إعلان الهيدر -->
+    <script>atOptions = {'key' : '65dbabb611908f80a96ae9a18e5912d9', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {}};</script>
+    <script src="https://www.highperformanceformat.com/65dbabb611908f80a96ae9a18e5912d9/invoke.js"></script>
+
+    <div class="container">
+        <h3>جاري تجهيز رابط التحميل...</h3>
+        <a id="downloadBtn" href="#" class="btn">تحميل Download</a>
+    </div>
+
+    <!-- إعلان الفوتر -->
+    <div id="frame" style="margin-top:30px;">
+        <iframe data-aa='2446003' src='//acceptable.a-ads.com/2446003/?size=Adaptive' style='border:0; width:70%; height:auto;'></iframe>
+    </div>
+
+    <p>© 2026 Casqadorr</p>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        let encodedId = urlParams.get('id');
+        if (encodedId) {
+            let finalUrl = atob(encodedId);
+            if (finalUrl.includes('dropbox.com')) {
+                finalUrl = finalUrl.replace('dl=0', 'dl=1');
+            }
+            const btn = document.getElementById('downloadBtn');
+            btn.href = finalUrl;
+            btn.style.display = 'inline-block';
+            document.querySelector('h3').innerText = "الملف جاهز للتحميل";
+        }
+    </script>
+</body>
+</html>
