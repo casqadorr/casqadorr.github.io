@@ -1,54 +1,54 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Download | Attack N' Destroy</title>
     <style>
-        body { font-family: sans-serif; text-align: center; background: #f4f7f6; padding: 20px; }
-        .container { background: white; padding: 30px; border-radius: 10px; max-width: 500px; margin: 20px auto; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .btn { display: none; background: #007bff; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 18px; }
-        .btn:hover { background: #0056b3; }
-        footer { margin-top: 50px; color: #777; font-size: 14px; }
+        body { font-family: sans-serif; text-align: center; background: #f4f7f6; margin: 0; padding: 20px; }
+        .container { background: white; padding: 30px; border-radius: 10px; max-width: 400px; margin: 20px auto; }
+        .btn { display: none; background: #28a745; color: white; padding: 15px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 18px; margin-top: 20px; }
+        .ad-space { margin: 20px 0; }
+        .thanks-msg { color: #555; font-weight: bold; margin: 15px 0; font-size: 14px; }
     </style>
 </head>
 <body>
     <h1>CASQADORR</h1>
     
-    <!-- إعلان الهيدر -->
+    <!-- إعلان Adsterra -->
     <script>atOptions = {'key' : '65dbabb611908f80a96ae9a18e5912d9', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {}};</script>
     <script src="https://www.highperformanceformat.com/65dbabb611908f80a96ae9a18e5912d9/invoke.js"></script>
 
+    <!-- الرسالة المضافة -->
+    <div class="thanks-msg">
+        شكراً لك على تخطي الرابط المختصر، لم يتبقى الآن إلا الضغط على زر التحميل في الأسفل.
+    </div>
+
     <div class="container">
-        <h3 id="status">جاري التحقق من الرابط...</h3>
-        <a id="downloadBtn" href="#" class="btn">تحميل Download</a>
+        <h3 id="msg">جاري التحقق...</h3>
+        <a id="downloadBtn" href="#" class="btn" onclick="openDownload(event)">تحميل Download</a>
     </div>
 
-    <!-- إعلان الفوتر -->
-    <div id="frame" style="width: 100%;margin: auto;position: relative; z-index: 99998;">
-        <iframe data-aa='2446003' src='//acceptable.a-ads.com/2446003/?size=Adaptive' style='border:0; padding:0; width:70%; height:auto; overflow:hidden;display: block;margin: auto'></iframe>
-    </div>
-
-    <footer>© 2026 Casqadorr</footer>
+    <!-- 3 إعلانات A-ADS -->
+    <div class="ad-space"><iframe data-aa='2446003' src='//acceptable.a-ads.com/2446003/?size=Adaptive' style='border:0; width:100%; height:auto;'></iframe></div>
+    <div class="ad-space"><iframe data-aa='2446003' src='//acceptable.a-ads.com/2446003/?size=Adaptive' style='border:0; width:100%; height:auto;'></iframe></div>
+    <div class="ad-space"><iframe data-aa='2446003' src='//acceptable.a-ads.com/2446003/?size=Adaptive' style='border:0; width:100%; height:auto;'></iframe></div>
 
     <script>
         const urlParams = new URLSearchParams(window.location.search);
-        let encodedId = urlParams.get('id');
-        if (encodedId) {
-            try {
-                let finalUrl = atob(encodedId);
-                // التعديل التلقائي لروابط دروب بوكس
-                if (finalUrl.includes('dropbox.com')) {
-                    finalUrl = finalUrl.replace('dl=0', 'dl=1');
-                }
-                const btn = document.getElementById('downloadBtn');
-                btn.href = finalUrl;
-                btn.style.display = 'inline-block';
-                document.getElementById('status').innerText = "الملف جاهز للتحميل";
-            } catch (e) {
-                document.getElementById('status').innerText = "رابط غير صالح!";
-            }
+        let id = urlParams.get('id');
+        let finalUrl = "";
+        
+        if(id) {
+            finalUrl = atob(id);
+            const btn = document.getElementById('downloadBtn');
+            btn.style.display = 'inline-block';
+            document.getElementById('msg').innerText = "الملف جاهز للتحميل";
+        }
+
+        function openDownload(e) {
+            window.open(finalUrl, '_blank');
+            window.location.href = "https://www.effectivecpmnetwork.com/yikqud60?key=5eb19de74fc2424b1bb5308e8244ffdc";
         }
     </script>
 </body>
