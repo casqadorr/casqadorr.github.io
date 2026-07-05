@@ -3,53 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Casqadorr Admin</title>
+    <title>Generator | Attack N' Destroy</title>
     <style>
-        body { font-family: sans-serif; background: #2c3e50; color: white; padding: 20px; text-align: center; }
-        .panel { background: #34495e; padding: 20px; border-radius: 10px; max-width: 450px; margin: auto; }
-        input, textarea { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: none; box-sizing: border-box; }
-        button { width: 100%; padding: 10px; margin: 5px 0; border: none; cursor: pointer; border-radius: 5px; color: white; font-weight: bold; }
-        .result-box { background: #1e272e; padding: 10px; border-radius: 5px; word-break: break-all; font-size: 13px; margin: 10px 0; border: 1px dashed #7f8c8d; text-align: right; }
-        #genBtn { background: #27ae60; }
-        .copyBtn { background: #3498db; }
-        .hidden { display: none; }
+        body { font-family: sans-serif; padding: 20px; background: #eee; }
+        .box { background: white; padding: 20px; border-radius: 8px; max-width: 500px; margin: auto; }
+        input { width: 100%; padding: 10px; margin: 10px 0; box-sizing: border-box; }
+        button { padding: 10px 20px; cursor: pointer; border: none; border-radius: 5px; font-weight: bold; margin: 5px; }
+        .btn-db { background: #007bff; color: white; }
+        .btn-other { background: #28a745; color: white; }
+        .btn-copy { background: #ff9800; color: white; }
+        #result { margin-top: 20px; word-break: break-all; padding: 10px; background: #f8f9fa; border: 1px solid #ddd; min-height: 20px; }
+        #status { color: green; font-weight: bold; margin-top: 10px; display: none; }
     </style>
 </head>
 <body>
-
-    <div class="panel">
-        <h2>توليد رابط التخطي</h2>
-        <input type="text" id="targetUrl" placeholder="ضع الرابط النهائي هنا">
-        <button id="genBtn" onclick="generate()">توليد الرابط</button>
-
-        <div id="outputArea" class="hidden">
-            <p>الرابط المباشر:</p>
-            <div id="urlResult" class="result-box"></div>
-            <button class="copyBtn" onclick="copyText('urlResult')">نسخ الرابط</button>
-
-            <p style="margin-top:20px;">كود الزر لبلوجر:</p>
-            <div id="htmlResult" class="result-box"></div>
-            <button class="copyBtn" onclick="copyText('htmlResult')">نسخ كود الزر</button>
-        </div>
+    <div class="box">
+        <h2>مولد روابط Attack N' Destroy</h2>
+        <input type="text" id="urlInput" placeholder="ضع الرابط هنا...">
+        <button class="btn-db" onclick="generate('dropbox')">Dropbox مباشر</button>
+        <button class="btn-other" onclick="generate('normal')">رابط عادي</button>
+        <div id="result">الرابط سيظهر هنا...</div>
+        <button class="btn-copy" onclick="copyResult()">نسخ الرابط</button>
+        <div id="status">تم النسخ بنجاح!</div>
     </div>
 
     <script>
-        function generate() {
-            const url = document.getElementById("targetUrl").value;
+        function generate(type) {
+            let url = document.getElementById('urlInput').value;
             if(!url) return;
-            
-            const finalLink = `https://casqadorr.github.io/skip.html?r=${btoa(url)}`;
-            const htmlCode = `<a href="${finalLink}" style="display:inline-block; padding:15px 30px; background:#e67e22; color:#fff; text-decoration:none; border-radius:50px; font-weight:bold;">انتقل لصفحة التحميل</a>`;
-            
-            document.getElementById("urlResult").innerText = finalLink;
-            document.getElementById("htmlResult").innerText = htmlCode;
-            document.getElementById("outputArea").classList.remove("hidden");
+            if(type === 'dropbox') url = url.replace('dl=0', 'dl=1');
+            let encoded = btoa(url);
+            document.getElementById('result').innerText = "https://casqadorr.github.io/csqdr4dl.html?id=" + encoded;
         }
-
-        function copyText(id) {
-            const text = document.getElementById(id).innerText;
+        function copyResult() {
+            let text = document.getElementById('result').innerText;
             navigator.clipboard.writeText(text);
-            // تم حذف alert بناءً على طلبك
+            let s = document.getElementById('status');
+            s.style.display = 'block';
+            setTimeout(() => { s.style.display = 'none'; }, 2000);
         }
     </script>
 </body>
