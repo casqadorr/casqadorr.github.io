@@ -2,95 +2,48 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تخطي الإعلانات - الخطوة 1</title>
+    <title>تخطي الإعلانات - النسخة النهائية</title>
     <style>
-        body { font-family: sans-serif; text-align: center; margin: 0; padding: 10px; background: #f4f4f4; color: #333; }
-        /* تم إضافة overflow: visible لضمان عدم قص الإعلان */
-        .ad-container { width: 100%; margin: 15px 0; display: flex; justify-content: center; overflow: visible; min-height: 50px; }
-        #timer { font-size: 24px; font-weight: bold; margin: 20px 0; color: #d35400; }
-        #btn { display: none; padding: 15px 40px; font-size: 20px; background: #27ae60; color: #fff; border: none; cursor: pointer; border-radius: 5px; margin-bottom: 20px; }
-        footer { margin-top: 30px; font-size: 14px; color: #777; border-top: 1px solid #ccc; padding-top: 10px; }
+        .ad-container { width: 100%; margin: 10px 0; border: none; }
+        iframe { border: none; width: 100%; overflow: hidden; }
     </style>
-    <script src="ads/pop.js"></script>
 </head>
 <body>
 
-    <h3>1 / 4</h3>
-    <p>انزل للأسفل، انتظر 10 ثوانٍ ثم اضغط استمرار.</p>
-
-    <!-- وحدات A-ADS -->
-    <div class="ad-container"><iframe data-aa='2446003' src='//acceptable.a-ads.com/2446003/?size=Adaptive' style='border:0; width:100%; height:auto; min-height: 90px;'></iframe></div>
-    <div class="ad-container"><iframe data-aa='2446003' src='//acceptable.a-ads.com/2446003/?size=Adaptive' style='border:0; width:100%; height:auto; min-height: 90px;'></iframe></div>
-    <div class="ad-container"><iframe data-aa='2446003' src='//acceptable.a-ads.com/2446003/?size=Adaptive' style='border:0; width:100%; height:auto; min-height: 90px;'></iframe></div>
-
-    <!-- تكرار الإعلانات مع تعريف مستقل لكل واحد -->
+    <!-- دالة إنشاء الإعلان داخل iframe مستقل -->
     <script>
-        function showAd(key, height, width) {
-            document.write('<script>atOptions = { "key" : "' + key + '", "format" : "iframe", "height" : ' + height + ', "width" : ' + width + ', "params" : {} };<\/script>');
-            document.write('<script src="https://www.highperformanceformat.com/' + key + '/invoke.js"><\/script>');
+        function createIsolatedAd(key, width, height) {
+            var html = '<scr' + 'ipt type="text/javascript">' +
+                       'atOptions = { "key" : "' + key + '", "format" : "iframe", "height" : ' + height + ', "width" : ' + width + ', "params" : {} };' +
+                       '</scr' + 'ipt>' +
+                       '<scr' + 'ipt type="text/javascript" src="https://www.highperformanceformat.com/' + key + '/invoke.js"></scr' + 'ipt>';
+            
+            var iframe = document.createElement('iframe');
+            iframe.style.width = width + 'px';
+            iframe.style.height = height + 'px';
+            document.body.appendChild(iframe);
+            iframe.contentWindow.document.open();
+            iframe.contentWindow.document.write(html);
+            iframe.contentWindow.document.close();
         }
     </script>
 
-    <!-- النوع الأول: 6 مرات -->
-    <div class="ad-container"><script>showAd('88f1ce91331d314d9ef54baeff209e91', 60, 468);</script></div>
-    <div class="ad-container"><script>showAd('88f1ce91331d314d9ef54baeff209e91', 60, 468);</script></div>
-    <div class="ad-container"><script>showAd('88f1ce91331d314d9ef54baeff209e91', 60, 468);</script></div>
-    <div class="ad-container"><script>showAd('88f1ce91331d314d9ef54baeff209e91', 60, 468);</script></div>
-    <div class="ad-container"><script>showAd('88f1ce91331d314d9ef54baeff209e91', 60, 468);</script></div>
-    <div class="ad-container"><script>showAd('88f1ce91331d314d9ef54baeff209e91', 60, 468);</script></div>
+    <!-- 3 وحدات A-ADS -->
+    <iframe data-aa='2446003' src='//acceptable.a-ads.com/2446003/?size=Adaptive' style='border:0; width:100%; height:90px;'></iframe>
+    <iframe data-aa='2446003' src='//acceptable.a-ads.com/2446003/?size=Adaptive' style='border:0; width:100%; height:90px;'></iframe>
+    <iframe data-aa='2446003' src='//acceptable.a-ads.com/2446003/?size=Adaptive' style='border:0; width:100%; height:90px;'></iframe>
 
-    <!-- النوع الثاني: 6 مرات -->
-    <div class="ad-container"><script>showAd('65dbabb611908f80a96ae9a18e5912d9', 250, 300);</script></div>
-    <div class="ad-container"><script>showAd('65dbabb611908f80a96ae9a18e5912d9', 250, 300);</script></div>
-    <div class="ad-container"><script>showAd('65dbabb611908f80a96ae9a18e5912d9', 250, 300);</script></div>
-    <div class="ad-container"><script>showAd('65dbabb611908f80a96ae9a18e5912d9', 250, 300);</script></div>
-    <div class="ad-container"><script>showAd('65dbabb611908f80a96ae9a18e5912d9', 250, 300);</script></div>
-    <div class="ad-container"><script>showAd('65dbabb611908f80a96ae9a18e5912d9', 250, 300);</script></div>
+    <!-- النوع الأول: 6 مرات بنفس المفتاح -->
+    <script>for(let i=0; i<6; i++) createIsolatedAd('88f1ce91331d314d9ef54baeff209e91', 320, 50);</script>
 
-    <!-- النوع الثالث: 6 مرات -->
-    <div class="ad-container"><script>showAd('6dadbd1c0664a5adfb47016d73be958e', 50, 320);</script></div>
-    <div class="ad-container"><script>showAd('6dadbd1c0664a5adfb47016d73be958e', 50, 320);</script></div>
-    <div class="ad-container"><script>showAd('6dadbd1c0664a5adfb47016d73be958e', 50, 320);</script></div>
-    <div class="ad-container"><script>showAd('6dadbd1c0664a5adfb47016d73be958e', 50, 320);</script></div>
-    <div class="ad-container"><script>showAd('6dadbd1c0664a5adfb47016d73be958e', 50, 320);</script></div>
-    <div class="ad-container"><script>showAd('6dadbd1c0664a5adfb47016d73be958e', 50, 320);</script></div>
+    <!-- النوع الثاني: 6 مرات بنفس المفتاح -->
+    <script>for(let i=0; i<6; i++) createIsolatedAd('65dbabb611908f80a96ae9a18e5912d9', 300, 250);</script>
 
-    <!-- النوع الرابع: 6 مرات -->
-    <div class="ad-container"><script>showAd('a5b4e81144b7f1b6eb351630841aab53', 90, 728);</script></div>
-    <div class="ad-container"><script>showAd('a5b4e81144b7f1b6eb351630841aab53', 90, 728);</script></div>
-    <div class="ad-container"><script>showAd('a5b4e81144b7f1b6eb351630841aab53', 90, 728);</script></div>
-    <div class="ad-container"><script>showAd('a5b4e81144b7f1b6eb351630841aab53', 90, 728);</script></div>
-    <div class="ad-container"><script>showAd('a5b4e81144b7f1b6eb351630841aab53', 90, 728);</script></div>
-    <div class="ad-container"><script>showAd('a5b4e81144b7f1b6eb351630841aab53', 90, 728);</script></div>
+    <!-- النوع الثالث: 6 مرات بنفس المفتاح -->
+    <script>for(let i=0; i<6; i++) createIsolatedAd('6dadbd1c0664a5adfb47016d73be958e', 320, 50);</script>
 
-    <div id="timer">10</div>
-    <button id="btn" onclick="next()">استمرار</button>
+    <!-- النوع الرابع: 6 مرات بنفس المفتاح -->
+    <script>for(let i=0; i<6; i++) createIsolatedAd('a5b4e81144b7f1b6eb351630841aab53', 320, 90);</script>
 
-    <footer>© 2026 Casqadorr</footer>
-
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const base64Url = urlParams.get('url');
-        let count = 10;
-        const timerEl = document.getElementById('timer');
-        const btn = document.getElementById('btn');
-        
-        const interval = setInterval(() => {
-            count--;
-            timerEl.innerText = count;
-            if(count <= 0) {
-                clearInterval(interval);
-                timerEl.style.display = 'none';
-                btn.style.display = 'inline-block';
-            }
-        }, 1000);
-
-        function next() {
-            if(base64Url) {
-                window.location.href = 'step2.html?url=' + base64Url;
-            }
-        }
-    </script>
 </body>
 </html>
