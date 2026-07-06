@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تخطي الإعلانات - الخطوة 2</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; margin: 0; padding: 10px; background: #f4f4f4; color: #333; }
+        .ad-container { width: 100%; margin: 10px 0; overflow: hidden; display: flex; justify-content: center; }
+        #timer { font-size: 24px; font-weight: bold; margin: 20px 0; color: #d35400; }
+        #btn { display: none; padding: 15px 40px; font-size: 20px; background: #27ae60; color: #fff; border: none; cursor: pointer; border-radius: 5px; margin-bottom: 20px; }
+        footer { margin-top: 30px; font-size: 14px; color: #777; border-top: 1px solid #ccc; padding-top: 10px; }
+    </style>
+</head>
+<body>
+
+    <h3>2 / 4</h3>
+    <p>انزل للأسفل، انتظر 10 ثوانٍ ثم اضغط استمرار.</p>
+
+    <script src="ads/pop.js"></script>
+    <div class="ad-container"><script src="ads/1.js"></script></div>
+    <div class="ad-container"><script src="ads/2.js"></script></div>
+    <div class="ad-container"><script src="ads/3.js"></script></div>
+    <div class="ad-container"><script src="ads/4.js"></script></div>
+    <div class="ad-container"><script src="ads/5.js"></script></div>
+    <div class="ad-container"><script src="ads/6.js"></script></div>
+    <div class="ad-container"><script src="ads/7.js"></script></div>
+    <div class="ad-container"><script src="ads/8.js"></script></div>
+    <div class="ad-container"><script src="ads/9.js"></script></div>
+    <div class="ad-container"><script src="ads/10.js"></script></div>
+    <div class="ad-container"><script src="ads/11.js"></script></div>
+    <div class="ad-container"><script src="ads/12.js"></script></div>
+    <div class="ad-container"><script src="ads/13.js"></script></div>
+    <div class="ad-container"><script src="ads/14.js"></script></div>
+    <div class="ad-container"><script src="ads/15.js"></script></div>
+    <div class="ad-container"><script src="ads/16.js"></script></div>
+    <div class="ad-container"><script src="ads/17.js"></script></div>
+    <div class="ad-container"><script src="ads/18.js"></script></div>
+    <div class="ad-container"><script src="ads/19.js"></script></div>
+    <div class="ad-container"><script src="ads/20.js"></script></div>
+    <div class="ad-container"><script src="ads/21.js"></script></div>
+    <div class="ad-container"><script src="ads/22.js"></script></div>
+    <div class="ad-container"><script src="ads/23.js"></script></div>
+    <div class="ad-container"><script src="ads/24.js"></script></div>
+    <div class="ad-container"><script src="ads/25.js"></script></div>
+
+    <div id="timer">10</div>
+    <button id="btn" onclick="next()">استمرار</button>
+
+    <footer>© 2026 Casqadorr</footer>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const base64Url = urlParams.get('url');
+        let count = 10;
+        const timerEl = document.getElementById('timer');
+        const btn = document.getElementById('btn');
+        
+        const interval = setInterval(() => {
+            count--;
+            timerEl.innerText = count;
+            if(count <= 0) {
+                clearInterval(interval);
+                timerEl.style.display = 'none';
+                btn.style.display = 'inline-block';
+            }
+        }, 1000);
+
+        function next() {
+            if(base64Url) {
+                window.location.href = 'step3.html?url=' + base64Url;
+            }
+        }
+    </script>
+</body>
+</html>
