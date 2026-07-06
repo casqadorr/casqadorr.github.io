@@ -1,0 +1,138 @@
+/* ==========================================
+   CSQ4S
+   Animations
+========================================== */
+
+/* Fade In */
+
+.fade-in{
+
+    animation:fadeIn .6s ease forwards;
+
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(15px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* Fade Out */
+
+.fade-out{
+
+    animation:fadeOut .4s ease forwards;
+
+}
+
+@keyframes fadeOut{
+
+    from{
+
+        opacity:1;
+
+    }
+
+    to{
+
+        opacity:0;
+
+    }
+
+}
+
+/* Zoom */
+
+.zoom-in{
+
+    animation:zoomIn .4s ease;
+
+}
+
+@keyframes zoomIn{
+
+    from{
+
+        opacity:0;
+
+        transform:scale(.9);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:scale(1);
+
+    }
+
+}
+
+/* Timer Pulse */
+
+.timer{
+
+    animation:pulse 1s infinite;
+
+}
+
+@keyframes pulse{
+
+    0%{
+
+        box-shadow:0 0 12px rgba(59,130,246,.25);
+
+    }
+
+    50%{
+
+        box-shadow:0 0 28px rgba(59,130,246,.6);
+
+    }
+
+    100%{
+
+        box-shadow:0 0 12px rgba(59,130,246,.25);
+
+    }
+
+}
+
+/* Button */
+
+.continue{
+
+    transition:
+    transform .25s,
+    box-shadow .25s;
+
+}
+
+.continue:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 12px 35px rgba(37,99,235,.35);
+
+}
+
+.continue:active{
+
+    transform:scale(.97);
+
+}
