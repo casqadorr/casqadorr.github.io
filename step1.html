@@ -6,12 +6,12 @@
     <title>تخطي الإعلانات - الخطوة 1</title>
     <style>
         body { font-family: sans-serif; text-align: center; margin: 0; padding: 10px; background: #f4f4f4; color: #333; }
-        .ad-container { width: 100%; margin: 15px 0; display: flex; justify-content: center; }
+        /* تم إضافة overflow: visible لضمان عدم قص الإعلان */
+        .ad-container { width: 100%; margin: 15px 0; display: flex; justify-content: center; overflow: visible; min-height: 50px; }
         #timer { font-size: 24px; font-weight: bold; margin: 20px 0; color: #d35400; }
         #btn { display: none; padding: 15px 40px; font-size: 20px; background: #27ae60; color: #fff; border: none; cursor: pointer; border-radius: 5px; margin-bottom: 20px; }
         footer { margin-top: 30px; font-size: 14px; color: #777; border-top: 1px solid #ccc; padding-top: 10px; }
     </style>
-    <!-- تم إضافة كود البوب أب هنا -->
     <script src="ads/pop.js"></script>
 </head>
 <body>
@@ -19,46 +19,50 @@
     <h3>1 / 4</h3>
     <p>انزل للأسفل، انتظر 10 ثوانٍ ثم اضغط استمرار.</p>
 
-    <!-- 3 وحدات A-ADS -->
-    <div class="ad-container"><iframe data-aa='2446003' src='//acceptable.a-ads.com/2446003/?size=Adaptive' style='border:0; width:70%; height:auto;'></iframe></div>
-    <div class="ad-container"><iframe data-aa='2446003' src='//acceptable.a-ads.com/2446003/?size=Adaptive' style='border:0; width:70%; height:auto;'></iframe></div>
-    <div class="ad-container"><iframe data-aa='2446003' src='//acceptable.a-ads.com/2446003/?size=Adaptive' style='border:0; width:70%; height:auto;'></iframe></div>
+    <!-- وحدات A-ADS -->
+    <div class="ad-container"><iframe data-aa='2446003' src='//acceptable.a-ads.com/2446003/?size=Adaptive' style='border:0; width:100%; height:auto; min-height: 90px;'></iframe></div>
+    <div class="ad-container"><iframe data-aa='2446003' src='//acceptable.a-ads.com/2446003/?size=Adaptive' style='border:0; width:100%; height:auto; min-height: 90px;'></iframe></div>
+    <div class="ad-container"><iframe data-aa='2446003' src='//acceptable.a-ads.com/2446003/?size=Adaptive' style='border:0; width:100%; height:auto; min-height: 90px;'></iframe></div>
 
-    <!-- 6 وحدات إعلانية (النوع الأول) -->
-    <script>atOptions = {'key' : '88f1ce91331d314d9ef54baeff209e91', 'format' : 'iframe', 'height' : 60, 'width' : 468, 'params' : {}};</script>
-    <div class="ad-container"><script src="https://www.highperformanceformat.com/88f1ce91331d314d9ef54baeff209e91/invoke.js"></script></div>
-    <div class="ad-container"><script src="https://www.highperformanceformat.com/88f1ce91331d314d9ef54baeff209e91/invoke.js"></script></div>
-    <div class="ad-container"><script src="https://www.highperformanceformat.com/88f1ce91331d314d9ef54baeff209e91/invoke.js"></script></div>
-    <div class="ad-container"><script src="https://www.highperformanceformat.com/88f1ce91331d314d9ef54baeff209e91/invoke.js"></script></div>
-    <div class="ad-container"><script src="https://www.highperformanceformat.com/88f1ce91331d314d9ef54baeff209e91/invoke.js"></script></div>
-    <div class="ad-container"><script src="https://www.highperformanceformat.com/88f1ce91331d314d9ef54baeff209e91/invoke.js"></script></div>
+    <!-- تكرار الإعلانات مع تعريف مستقل لكل واحد -->
+    <script>
+        function showAd(key, height, width) {
+            document.write('<script>atOptions = { "key" : "' + key + '", "format" : "iframe", "height" : ' + height + ', "width" : ' + width + ', "params" : {} };<\/script>');
+            document.write('<script src="https://www.highperformanceformat.com/' + key + '/invoke.js"><\/script>');
+        }
+    </script>
 
-    <!-- 6 وحدات إعلانية (النوع الثاني) -->
-    <script>atOptions = {'key' : '65dbabb611908f80a96ae9a18e5912d9', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {}};</script>
-    <div class="ad-container"><script src="https://www.highperformanceformat.com/65dbabb611908f80a96ae9a18e5912d9/invoke.js"></script></div>
-    <div class="ad-container"><script src="https://www.highperformanceformat.com/65dbabb611908f80a96ae9a18e5912d9/invoke.js"></script></div>
-    <div class="ad-container"><script src="https://www.highperformanceformat.com/65dbabb611908f80a96ae9a18e5912d9/invoke.js"></script></div>
-    <div class="ad-container"><script src="https://www.highperformanceformat.com/65dbabb611908f80a96ae9a18e5912d9/invoke.js"></script></div>
-    <div class="ad-container"><script src="https://www.highperformanceformat.com/65dbabb611908f80a96ae9a18e5912d9/invoke.js"></script></div>
-    <div class="ad-container"><script src="https://www.highperformanceformat.com/65dbabb611908f80a96ae9a18e5912d9/invoke.js"></script></div>
+    <!-- النوع الأول: 6 مرات -->
+    <div class="ad-container"><script>showAd('88f1ce91331d314d9ef54baeff209e91', 60, 468);</script></div>
+    <div class="ad-container"><script>showAd('88f1ce91331d314d9ef54baeff209e91', 60, 468);</script></div>
+    <div class="ad-container"><script>showAd('88f1ce91331d314d9ef54baeff209e91', 60, 468);</script></div>
+    <div class="ad-container"><script>showAd('88f1ce91331d314d9ef54baeff209e91', 60, 468);</script></div>
+    <div class="ad-container"><script>showAd('88f1ce91331d314d9ef54baeff209e91', 60, 468);</script></div>
+    <div class="ad-container"><script>showAd('88f1ce91331d314d9ef54baeff209e91', 60, 468);</script></div>
 
-    <!-- 6 وحدات إعلانية (النوع الثالث) -->
-    <script>atOptions = {'key' : '6dadbd1c0664a5adfb47016d73be958e', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {}};</script>
-    <div class="ad-container"><script src="https://www.highperformanceformat.com/6dadbd1c0664a5adfb47016d73be958e/invoke.js"></script></div>
-    <div class="ad-container"><script src="https://www.highperformanceformat.com/6dadbd1c0664a5adfb47016d73be958e/invoke.js"></script></div>
-    <div class="ad-container"><script src="https://www.highperformanceformat.com/6dadbd1c0664a5adfb47016d73be958e/invoke.js"></script></div>
-    <div class="ad-container"><script src="https://www.highperformanceformat.com/6dadbd1c0664a5adfb47016d73be958e/invoke.js"></script></div>
-    <div class="ad-container"><script src="https://www.highperformanceformat.com/6dadbd1c0664a5adfb47016d73be958e/invoke.js"></script></div>
-    <div class="ad-container"><script src="https://www.highperformanceformat.com/6dadbd1c0664a5adfb47016d73be958e/invoke.js"></script></div>
+    <!-- النوع الثاني: 6 مرات -->
+    <div class="ad-container"><script>showAd('65dbabb611908f80a96ae9a18e5912d9', 250, 300);</script></div>
+    <div class="ad-container"><script>showAd('65dbabb611908f80a96ae9a18e5912d9', 250, 300);</script></div>
+    <div class="ad-container"><script>showAd('65dbabb611908f80a96ae9a18e5912d9', 250, 300);</script></div>
+    <div class="ad-container"><script>showAd('65dbabb611908f80a96ae9a18e5912d9', 250, 300);</script></div>
+    <div class="ad-container"><script>showAd('65dbabb611908f80a96ae9a18e5912d9', 250, 300);</script></div>
+    <div class="ad-container"><script>showAd('65dbabb611908f80a96ae9a18e5912d9', 250, 300);</script></div>
 
-    <!-- 6 وحدات إعلانية (النوع الرابع) -->
-    <script>atOptions = {'key' : 'a5b4e81144b7f1b6eb351630841aab53', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {}};</script>
-    <div class="ad-container"><script src="https://www.highperformanceformat.com/a5b4e81144b7f1b6eb351630841aab53/invoke.js"></script></div>
-    <div class="ad-container"><script src="https://www.highperformanceformat.com/a5b4e81144b7f1b6eb351630841aab53/invoke.js"></script></div>
-    <div class="ad-container"><script src="https://www.highperformanceformat.com/a5b4e81144b7f1b6eb351630841aab53/invoke.js"></script></div>
-    <div class="ad-container"><script src="https://www.highperformanceformat.com/a5b4e81144b7f1b6eb351630841aab53/invoke.js"></script></div>
-    <div class="ad-container"><script src="https://www.highperformanceformat.com/a5b4e81144b7f1b6eb351630841aab53/invoke.js"></script></div>
-    <div class="ad-container"><script src="https://www.highperformanceformat.com/a5b4e81144b7f1b6eb351630841aab53/invoke.js"></script></div>
+    <!-- النوع الثالث: 6 مرات -->
+    <div class="ad-container"><script>showAd('6dadbd1c0664a5adfb47016d73be958e', 50, 320);</script></div>
+    <div class="ad-container"><script>showAd('6dadbd1c0664a5adfb47016d73be958e', 50, 320);</script></div>
+    <div class="ad-container"><script>showAd('6dadbd1c0664a5adfb47016d73be958e', 50, 320);</script></div>
+    <div class="ad-container"><script>showAd('6dadbd1c0664a5adfb47016d73be958e', 50, 320);</script></div>
+    <div class="ad-container"><script>showAd('6dadbd1c0664a5adfb47016d73be958e', 50, 320);</script></div>
+    <div class="ad-container"><script>showAd('6dadbd1c0664a5adfb47016d73be958e', 50, 320);</script></div>
+
+    <!-- النوع الرابع: 6 مرات -->
+    <div class="ad-container"><script>showAd('a5b4e81144b7f1b6eb351630841aab53', 90, 728);</script></div>
+    <div class="ad-container"><script>showAd('a5b4e81144b7f1b6eb351630841aab53', 90, 728);</script></div>
+    <div class="ad-container"><script>showAd('a5b4e81144b7f1b6eb351630841aab53', 90, 728);</script></div>
+    <div class="ad-container"><script>showAd('a5b4e81144b7f1b6eb351630841aab53', 90, 728);</script></div>
+    <div class="ad-container"><script>showAd('a5b4e81144b7f1b6eb351630841aab53', 90, 728);</script></div>
+    <div class="ad-container"><script>showAd('a5b4e81144b7f1b6eb351630841aab53', 90, 728);</script></div>
 
     <div id="timer">10</div>
     <button id="btn" onclick="next()">استمرار</button>
