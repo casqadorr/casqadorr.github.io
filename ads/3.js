@@ -1,0 +1,1 @@
+document.write('<div id="frame" style="width: 100%; margin: auto; position: relative; z-index: 99998;"><iframe data-aa="2446003" src="//acceptable.a-ads.com/2446003/?size=Adaptive" style="border:0; padding:0; width:100%; height:120px; overflow:hidden; display:block; margin:auto"></iframe></div>');
