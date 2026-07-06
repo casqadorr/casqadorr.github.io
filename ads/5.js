@@ -1,15 +1,14 @@
-var atOptions = {
-    'key': '65dbabb611908f80a96ae9a18e5912d9',
-    'format': 'iframe',
-    'height': 250,
-    'width': 300,
-    'params': {}
+window.atOptions = {
+    key: "88f1ce91331d314d9ef54baeff209e91",
+    format: "iframe",
+    height: 60,
+    width: 468,
+    params: {}
 };
 
-// إنشاء وسم السكربت الخاص بالاستدعاء
-var script = document.createElement('script');
-script.src = 'https://www.highperformanceformat.com/65dbabb611908f80a96ae9a18e5912d9/invoke.js';
-script.async = true;
-
-// إلحاق السكربت بالحاوية التي يتم استدعاء الملف فيها
-document.currentScript.parentNode.appendChild(script);
+(function () {
+    const script = document.createElement("script");
+    script.src = "https://www.highperformanceformat.com/88f1ce91331d314d9ef54baeff209e91/invoke.js";
+    script.async = true;
+    document.body.appendChild(script);
+})();
