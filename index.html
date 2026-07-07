@@ -6,13 +6,27 @@
     <title>موقع مودات GTA SA</title>
     <style>
         body { font-family: sans-serif; text-align: center; padding: 20px; line-height: 1.6; }
-        .mod-card { border: 2px solid #ddd; padding: 15px; margin: 15px auto; border-radius: 10px; max-width: 400px; background: #f9f9f9; }
+        .social-links { margin-bottom: 20px; }
+        .social-links a { background: #333; padding: 5px 15px; margin: 5px; color: white; border-radius: 20px; }
+        
+        .mod-card { border: 2px solid #ddd; padding: 15px; margin: 15px auto; border-radius: 10px; max-width: 400px; background: #f9f9f9; overflow-wrap: break-word; }
+        
+        /* جعل العنوان لا يخرج عن الإطار */
+        .mod-card h3 { word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; font-size: 1.2em; }
+        
         a { display: inline-block; margin: 5px; padding: 8px 15px; background: #007bff; color: white; text-decoration: none; border-radius: 5px; }
     </style>
 </head>
 <body>
 
-    <h1>مرحباً بكم في موقع مودات GTA SA</h1>
+    <h1>موقع مودات GTA SA</h1>
+    
+    <div class="social-links">
+        <a href="https://youtube.com/@casqadorr">يوتيوب</a>
+        <a href="https://facebook.com/@casqadorr">فيسبوك</a>
+        <a href="https://t.me/casqadorr">تلغرام</a>
+    </div>
+
     <p>الباسوردات في فيديوهات القناة.</p>
 
     <div id="mods-list">جاري تحميل المودات...</div>
@@ -28,7 +42,6 @@
                 list.innerHTML = ''; 
 
                 if (data.mods && data.mods.length > 0) {
-                    // التعديل هنا: نستخدم .slice().reverse() لعكس الترتيب
                     data.mods.slice().reverse().forEach(mod => {
                         list.innerHTML += `
                             <div class="mod-card">
@@ -42,8 +55,7 @@
                     list.innerHTML = '<p>لا يوجد مودات حالياً.</p>';
                 }
             } catch (error) {
-                document.getElementById('mods-list').innerHTML = '<p style="color:red;">خطأ: لا يمكن عرض المودات الآن.</p>';
-                console.error(error);
+                document.getElementById('mods-list').innerHTML = '<p style="color:red;">خطأ: يرجى تنظيف ملف data.json في المستودع.</p>';
             }
         }
 
