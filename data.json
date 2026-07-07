@@ -1,7 +1,7 @@
 {
   "mods": [
     {
-      "name": "مود سيارة",
+      "name": "ÙÙØ¯ Ø³ÙØ§Ø±Ø©",
       "download": "https://example.com",
       "video": "https://youtube.com"
     },
@@ -9,6 +9,11 @@
       "name": "test",
       "download": "https://google.com",
       "video": "https://youtube.com"
+    },
+    {
+      "name": "تجربة 3",
+      "download": "cc",
+      "video": "dd"
     }
   ]
 }
