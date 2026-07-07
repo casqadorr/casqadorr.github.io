@@ -20,7 +20,6 @@
     <script>
         async function loadMods() {
             try {
-                // نستخدم 'no-cache' لضمان جلب آخر نسخة من الملف دائماً
                 const response = await fetch('data.json?t=' + new Date().getTime());
                 if (!response.ok) throw new Error('تعذر تحميل البيانات');
                 
@@ -29,7 +28,8 @@
                 list.innerHTML = ''; 
 
                 if (data.mods && data.mods.length > 0) {
-                    data.mods.forEach(mod => {
+                    // التعديل هنا: نستخدم .slice().reverse() لعكس الترتيب
+                    data.mods.slice().reverse().forEach(mod => {
                         list.innerHTML += `
                             <div class="mod-card">
                                 <h3>${mod.name}</h3>
@@ -47,7 +47,6 @@
             }
         }
 
-        // تشغيل التحميل عند فتح الصفحة
         loadMods();
     </script>
 </body>
