@@ -1,40 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقع مودات GTA SA</title>
+    <style>
+        .mod-card { border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 8px; }
+        iframe { max-width: 100%; }
+    </style>
+</head>
 <body>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- البانر -->
-    <div id="frame" style="width: 100%;margin: auto;position: relative; z-index: 99998;">
-        <iframe data-aa='2446003' src='//acceptable.a-ads.com/2446003/?size=Adaptive' style='border:0; width:70%; height:auto; display: block;margin: auto'></iframe>
+    <div id="frame" style="width: 100%; text-align: center;">
+        <iframe data-aa='2446003' src='//acceptable.a-ads.com/2446003/?size=Adaptive' style='border:0; width:70%; height:auto;'></iframe>
     </div>
 
     <h1>مرحباً بكم في موقع مودات GTA SA</h1>
-    <p>هذا الموقع لتحميل المودات. ملاحظة: كلمات المرور تجدونها في فيديوهات قناتنا.</p>
+    <p>الباسوردات للمودات تجدونها في فيديوهات قناة اليوتيوب والفيسبوك.</p>
 
-    <!-- روابط التواصل -->
-    <div>
-        <a href="https://youtube.com/@casqadorr">يوتيوب</a>
-        <a href="https://facebook.com/@casqadorr">فيسبوك</a>
+    <div style="margin-bottom: 20px;">
+        <a href="https://youtube.com/@casqadorr">يوتيوب</a> | 
+        <a href="https://facebook.com/@casqadorr">فيسبوك</a> | 
         <a href="https://t.me/casqadorr">تلغرام</a>
     </div>
 
-    <div id="mods-list"></div>
+    <div id="mods-list">جاري تحميل المودات...</div>
 
     <script>
-        fetch('data.json').then(r => r.json()).then(data => {
-            const mods = data.mods;
-            const limit = 69;
-            // يمكنك إضافة منطق لعرض الصفحة الحالية باستخدام URLSearchParams
-            mods.slice(0, limit).forEach(mod => {
-                document.getElementById('mods-list').innerHTML += `
-                    <div>
-                        <h3>${mod.name}</h3>
-                        <a href="${mod.download}">تحميل</a>
-                        <a href="${mod.video}">شاهد الفيديو (للباسورد)</a>
-                    </div>
-                `;
+        fetch('data.json')
+            .then(response => response.json())
+            .then(data => {
+                const list = document.getElementById('mods-list');
+                list.innerHTML = ''; // مسح كلمة "جاري التحميل"
+                
+                data.mods.forEach(mod => {
+                    list.innerHTML += `
+                        <div class="mod-card">
+                            <h3>${mod.name}</h3>
+                            <a href="${mod.download}">تحميل المود</a> | 
+                            <a href="${mod.video}">شاهد الفيديو (للباسورد)</a>
+                        </div>
+                    `;
+                });
+            })
+            .catch(err => {
+                document.getElementById('mods-list').innerText = "حدث خطأ أثناء تحميل البيانات.";
+                console.error(err);
             });
-        });
     </script>
 </body>
 </html>
