@@ -18,37 +18,11 @@
     <p>انزل للأسفل، انتظر 10 ثوانٍ ثم اضغط استمرار.</p>
 
     <!--- هنا مكان الاعلانات ----->
-    <!-- الإعلان الأول (مرة 1) -->
-    <div class="ad-container">
-        <script>
-        (function(buto){
-        var d = document,
-            s = d.createElement('script'),
-            l = d.scripts[d.scripts.length - 1];
-        s.settings = buto || {};
-        s.src = "\/\/shameful-farm.com\/bYX-VAsvd.GClk0\/Y\/Wvcc\/XeqmH9\/u\/ZMUxlIk_P\/TGchyRMPDUM\/yEOCT\/M\/tUNazeIbw_Mrz\/I\/5\/N\/wx";
-        s.async = true;
-        s.referrerPolicy = 'no-referrer-when-downgrade';
-        l.parentNode.insertBefore(s, l);
-        })({})
-        </script>
-    </div>
-
-    <!-- الإعلان الثاني (مرة 2) -->
-    <div class="ad-container">
-        <script>
-        (function(buto){
-        var d = document,
-            s = d.createElement('script'),
-            l = d.scripts[d.scripts.length - 1];
-        s.settings = buto || {};
-        s.src = "\/\/shameful-farm.com\/bYX-VAsvd.GClk0\/Y\/Wvcc\/XeqmH9\/u\/ZMUxlIk_P\/TGchyRMPDUM\/yEOCT\/M\/tUNazeIbw_Mrz\/I\/5\/N\/wx";
-        s.async = true;
-        s.referrerPolicy = 'no-referrer-when-downgrade';
-        l.parentNode.insertBefore(s, l);
-        })({})
-        </script>
-    </div>
+    <!-- الإعلان الأول -->
+    <div class="ad-container" id="ad1"></div>
+    
+    <!-- الإعلان الثاني -->
+    <div class="ad-container" id="ad2"></div>
     <!--- نهاية الاعلانات ----->
 
     <div id="timer">10</div>
@@ -57,6 +31,22 @@
     <footer>© 2026 Casqadorr</footer>
 
     <script>
+        // دالة لتحميل الإعلان
+        function loadAd(containerId) {
+            var container = document.getElementById(containerId);
+            var s = document.createElement('script');
+            s.settings = {};
+            s.src = "//shameful-farm.com/bYX-VAsvd.GClk0/Y/Wvcc/XeqmH9/u/ZMUxlIk_P/TGchyRMPDUM/yEOCT/M/tUNazeIbw_Mrz/I/5/N/wx";
+            s.async = true;
+            s.referrerPolicy = 'no-referrer-when-downgrade';
+            container.appendChild(s);
+        }
+
+        // تحميل الإعلان مرتين في حاويات مختلفة
+        loadAd('ad1');
+        loadAd('ad2');
+
+        // باقي الكود كما هو
         const urlParams = new URLSearchParams(window.location.search);
         const base64Url = urlParams.get('url');
         let count = 10;
