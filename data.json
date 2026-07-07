@@ -1,6 +1,9 @@
 {
-  "title": "موقعي الشخصي",
-  "welcomeMessage": "مرحباً بكم في موقعي المتواضع!",
-  "linkText": "تواصل معي",
-  "linkUrl": "https://example.com"
+  "mods": [
+    {
+      "name": "مود سيارة",
+      "download": "https://example.com",
+      "video": "https://youtube.com"
+    }
+  ]
 }
