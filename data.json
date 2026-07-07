@@ -1,7 +1,7 @@
 {
   "mods": [
     {
-      "name": "ÙÙØ¯ Ø³ÙØ§Ø±Ø©",
+      "name": "ÃÂÃÂÃÂ¯ ÃÂ³ÃÂÃÂ§ÃÂ±ÃÂ©",
       "download": "https://example.com",
       "video": "https://youtube.com"
     },
@@ -11,9 +11,14 @@
       "video": "https://youtube.com"
     },
     {
-      "name": "تجربة 3",
+      "name": "ØªØ¬Ø±Ø¨Ø© 3",
       "download": "cc",
       "video": "dd"
+    },
+    {
+      "name": "ههه",
+      "download": "nn",
+      "video": "zz"
     }
   ]
 }
