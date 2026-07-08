@@ -8,34 +8,24 @@
         body { font-family: sans-serif; text-align: center; background-color: #f9f9f9; padding: 20px; }
         .step { display: none; }
         .step.active { display: block; }
-        .ad-container { margin: 15px auto; display: flex; justify-content: center; }
         .btn { padding: 15px 40px; font-size: 20px; background: #28a745; color: white; border-radius: 5px; cursor: pointer; border: none; margin-top: 20px; }
         .btn:disabled { background: #ccc; cursor: not-allowed; }
-        #pop-trigger { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 99999; cursor: pointer; display: none; }
     </style>
 </head>
 <body>
 
-    <div id="pop-trigger" onclick="openPopUnder()"></div>
     <div id="progress">الخطوة <span id="current-step">1</span> / 4</div>
     <div id="steps-wrapper"></div>
 
     <script>
-        // مصفوفة تحتوي على أكواد الإعلانات التي زودتني بها
-        const adsHTML = `
-            <div class="ad-container"><div style="width: 100%;margin: auto;position: relative;"><iframe data-aa='2446003' src='//acceptable.a-ads.com/2446003/?size=Adaptive' style='border:0; width:70%; height:100px; display: block;margin: auto'></iframe></div></div>
-            <div class="ad-container"><script src="https://www.highperformanceformat.com/88f1ce91331d314d9ef54baeff209e91/invoke.js"><\/script></div>
-            <div class="ad-container"><script src="https://www.highperformanceformat.com/65dbabb611908f80a96ae9a18e5912d9/invoke.js"><\/script></div>
-            <div class="ad-container"><script src="https://www.highperformanceformat.com/6dadbd1c0664a5adfb47016d73be958e/invoke.js"><\/script></div>
-            <div class="ad-container"><script src="https://www.highperformanceformat.com/a5b4e81144b7f1b6eb351630841aab53/invoke.js"><\/script></div>
-        `;
-
         const wrapper = document.getElementById('steps-wrapper');
+        
+        // إنشاء الخطوات الأربعة
         for (let s = 1; s <= 4; s++) {
             let stepDiv = document.createElement('div');
             stepDiv.id = 'step-' + s;
             stepDiv.className = 'step' + (s === 1 ? ' active' : '');
-            stepDiv.innerHTML = `<h1>الخطوة ${s}</h1>` + adsHTML;
+            stepDiv.innerHTML = `<h1>الخطوة ${s}</h1><p>يرجى الانتظار حتى انتهاء الوقت للمتابعة.</p>`;
             
             let btn = document.createElement('button');
             btn.className = 'btn';
@@ -47,48 +37,50 @@
             wrapper.appendChild(stepDiv);
         }
 
+        // تشغيل المؤقت
         function startTimer(btn, s) {
             let timeLeft = 10;
             btn.innerText = "انتظر " + timeLeft + " ثانية";
             let timer = setInterval(() => {
                 timeLeft--;
-                if (timeLeft > 0) btn.innerText = "انتظر " + timeLeft + " ثانية";
-                else { btn.innerText = (s < 4) ? "التالي (" + (s + 1) + "/4)" : "الحصول على الرابط"; btn.disabled = false; clearInterval(timer); }
+                if (timeLeft > 0) {
+                    btn.innerText = "انتظر " + timeLeft + " ثانية";
+                } else {
+                    btn.innerText = (s < 4) ? "التالي (" + (s + 1) + "/4)" : "الحصول على الرابط";
+                    btn.disabled = false;
+                    clearInterval(timer);
+                }
             }, 1000);
         }
 
+        // الانتقال بين الخطوات
         function startStep(n) {
             document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
             document.getElementById('step-' + n).classList.add('active');
             document.getElementById('current-step').innerText = n;
             window.scrollTo(0, 0);
-            
-            // تفعيل الـ Pop-under عند بداية كل خطوة
-            document.getElementById('pop-trigger').style.display = 'block';
-            
             startTimer(document.getElementById('btn-' + n), n);
         }
 
-        function openPopUnder() {
-            window.open("https://www.effectivecpmnetwork.com/yikqud60?key=5eb19de74fc2424b1bb5308e8244ffdc", "_blank");
-            document.getElementById('pop-trigger').style.display = 'none';
-        }
-
-        // البداية
-        document.getElementById('pop-trigger').style.display = 'block';
+        // بدء المؤقت للخطوة الأولى
         startTimer(document.getElementById('btn-1'), 1);
 
+        // وظيفة جلب الرابط
         async function showLink() {
             const params = new URLSearchParams(window.location.search);
             const id = params.get("id");
             if (!id) { alert("لم يتم العثور على معرف الرابط."); return; }
             try {
                 const response = await fetch("./links.json");
+                if (!response.ok) throw new Error("تعذر تحميل ملف links.json");
                 const links = await response.json();
-                if (links[id]) window.location.href = links[id];
-                else alert("الرابط غير موجود.");
+                if (links[id]) {
+                    window.location.href = links[id];
+                } else {
+                    alert("الرابط غير موجود.");
+                }
             } catch (err) {
-                alert("حدث خطأ.");
+                alert("حدث خطأ أثناء تحميل الروابط.");
             }
         }
     </script>
