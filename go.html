@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تحميل المود - نظام الإعلانات</title>
+    <title>تجهيز الرابط</title>
     <style>
-        body { font-family: sans-serif; text-align: center; background-color: #f9f9f9; padding: 20px; }
-        .step { display: none; }
+        body { font-family: sans-serif; text-align: center; background-color: #f9f9f9; padding: 20px; margin: 0; }
+        .step { display: none; padding: 20px; }
         .step.active { display: block; }
-        .ads-container { display: flex; flex-direction: column; gap: 15px; margin: 20px 0; }
-        .ad-box { border: 1px solid #ddd; background: #fff; padding: 10px; width: 100%; box-sizing: border-box; min-height: 50px; }
+        .ads-container { display: flex; flex-direction: column; gap: 10px; margin: 20px auto; max-width: 400px; }
+        .ad-box { border: 1px solid #ddd; background: #fff; padding: 10px; min-height: 50px; }
         .btn { padding: 15px 40px; font-size: 20px; background: #28a745; color: white; border-radius: 5px; cursor: pointer; border: none; margin-top: 20px; }
         .btn:disabled { background: #ccc; cursor: not-allowed; }
         #pop-under { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 99999; cursor: pointer; }
@@ -18,11 +18,9 @@
 <body>
 
     <div id="pop-under" onclick="openPopUnder()"></div>
-    <div id="progress">الخطوة <span id="current-step">1</span> / 4</div>
     <div id="steps-wrapper"></div>
 
     <script>
-        // دالة الـ Pop-under المحدثة لتعمل في كل الخطوات
         let canOpenPop = true;
         function openPopUnder() {
             if (!canOpenPop) return;
@@ -31,45 +29,20 @@
             setTimeout(() => { canOpenPop = true; }, 3000);
         }
 
-        // دالة إنشاء الإعلانات
-        function createAd(container, type) {
-            let box = document.createElement('div');
-            box.className = 'ad-box';
-            container.appendChild(box);
-            let iframe = document.createElement('iframe');
-            iframe.style.border = "none";
-            iframe.style.width = "100%";
-            box.appendChild(iframe);
-            let doc = iframe.contentWindow.document;
-            let rnd = Math.random();
-            if (type === 'aads') {
-                iframe.src = "//acceptable.a-ads.com/2446003/?size=Adaptive";
-                iframe.style.height = "100px";
-            } else {
-                let adContent = (type === 'shameful') ? `<script src="//shameful-farm.com/byXoV/s.dkGNl/0hYaWecL/Oe/m-9Ou/Z/U-lfkSPwTTcayHMhD/MaysO/TVMjt_NhzpIkwlM/z/IH5KNdww?r=${rnd}" async><\/script>` : `<script>atOptions = {"key" : "65dbabb611908f80a96ae9a18e5912d9","format" : "iframe","height" : 250,"width" : 300,"params" : {}};<\/script><script src="https://www.highperformanceformat.com/65dbabb611908f80a96ae9a18e5912d9/invoke.js?r=${rnd}"><\/script>`;
-                doc.open();
-                doc.write('<html><body>' + adContent + '</body></html>');
-                doc.close();
-                iframe.style.height = "250px";
-            }
-        }
-
-        // تهيئة الصفحة وجلب الرابط من JSON
         async function initPage() {
             const params = new URLSearchParams(window.location.search);
-            const id = params.get('id');
+            const id = params.get('id'); // سيأخذ "0001" كنص
             
-            // جلب البيانات من ملفك
-            const response = await fetch('https://casqadorr.github.io/links.json');
+            // إضافة وقت عشوائي لمنع الكاش
+            const response = await fetch(`https://casqadorr.github.io/links.json?t=${new Date().getTime()}`);
             const links = await response.json();
 
-            if (!links[id]) {
-                document.body.innerHTML = "<h1>عذراً، الرابط غير متاح (ID غير موجود)</h1>";
+            if (!links.hasOwnProperty(id)) {
+                document.body.innerHTML = "<h1>عذراً، هذا الرابط غير موجود</h1><p>ID المطلوب: " + id + "</p>";
                 return;
             }
 
-            const targetUrl = links[id];
-            buildSteps(targetUrl);
+            buildSteps(links[id]);
         }
 
         function buildSteps(finalUrl) {
@@ -89,9 +62,9 @@
                 stepDiv.appendChild(btn);
                 wrapper.appendChild(stepDiv);
 
+                // إدراج إعلانات تجريبية داخل الخطوات
                 let container = document.getElementById('ads-container-' + s);
-                for(let i=0; i<2; i++) createAd(container, 'aads');
-                for(let i=0; i<3; i++) createAd(container, 'shameful');
+                container.innerHTML = `<div class="ad-box">إعلان (الخطوة ${s})</div>`;
             }
             startTimer(document.getElementById('btn-1'), 1);
         }
@@ -101,14 +74,13 @@
             let timer = setInterval(() => {
                 timeLeft--;
                 if (timeLeft > 0) btn.innerText = "انتظر " + timeLeft + " ثانية";
-                else { btn.innerText = (s < 4) ? "التالي (" + (s + 1) + "/4)" : "تحميل المود الآن"; btn.disabled = false; clearInterval(timer); }
+                else { btn.innerText = (s < 4) ? "التالي" : "تحميل المود"; btn.disabled = false; clearInterval(timer); }
             }, 1000);
         }
 
         function startStep(n) {
             document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
             document.getElementById('step-' + n).classList.add('active');
-            document.getElementById('current-step').innerText = n;
             window.scrollTo(0, 0);
             startTimer(document.getElementById('btn-' + n), n);
         }
