@@ -227,5 +227,32 @@ startTimer();
 
 </script>
 
+<div id="popupOverlay"></div>
+
+<style>
+#popupOverlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:transparent;
+    z-index:999999;
+    display:block;
+}
+</style>
+
+<script>
+const overlay = document.getElementById("popupOverlay");
+
+overlay.onclick = function () {
+    window.open("https://google.com","_blank");
+    overlay.style.display = "none";
+};
+
+function showPopup(){
+    overlay.style.display = "block";
+}
+</script>
 </body>
 </html>
