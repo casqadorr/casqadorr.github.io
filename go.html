@@ -2,35 +2,86 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>صفحة التحميل</title>
-    </head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تجهيز رابط التحميل</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; text-align: center; background-color: #f0f2f5; padding: 20px; }
+        .container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .step { display: none; }
+        .step.active { display: block; }
+        .ad-box { border: 1px dashed #ccc; padding: 15px; margin: 20px 0; min-height: 100px; background: #fafafa; }
+        .btn { padding: 15px 30px; font-size: 18px; background: #2563eb; color: white; border: none; border-radius: 8px; cursor: pointer; transition: 0.3s; }
+        .btn:disabled { background: #94a3b8; cursor: not-allowed; }
+        #pop-under { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 99999; cursor: pointer; }
+    </style>
+</head>
 <body>
+
     <div id="pop-under" onclick="openPopUnder()"></div>
-    <div id="steps-wrapper"></div>
+
+    <div class="container">
+        <div id="steps-wrapper"></div>
+    </div>
 
     <script>
-        let popUrl = "";
+        const POP_URL = "https://www.effectivecpmnetwork.com/yikqud60?key=5eb19de74fc2424b1bb5308e8244ffdc";
         let canOpenPop = true;
+        let targetModUrl = "";
 
-        // دالة جلب الإعدادات والروابط
-        async function init() {
-            const resp = await fetch('https://casqadorr.github.io/links.json');
-            const data = await resp.json();
-            popUrl = data.settings.pop_url;
-            
-            const params = new URLSearchParams(window.location.search);
-            const id = params.get('id');
-            const targetUrl = data.links[id];
-            
-            if (!targetUrl) document.body.innerHTML = "<h1>رابط غير موجود</h1>";
-            // هنا تكمل منطق عرض الخطوات...
-        }
-
+        // دالة الـ Pop-under
         function openPopUnder() {
             if (!canOpenPop) return;
-            window.open(popUrl, "_blank");
+            window.open(POP_URL, "_blank");
             canOpenPop = false;
-            setTimeout(() => { canOpenPop = true; }, 5000);
+            setTimeout(() => { canOpenPop = true; }, 3000); // إتاحة النقرة التالية بعد 3 ثوانٍ
+        }
+
+        async function init() {
+            try {
+                // جلب الروابط من GitHub الخاص بك
+                const resp = await fetch('https://casqadorr.github.io/links.json');
+                const data = await resp.json();
+                
+                const params = new URLSearchParams(window.location.search);
+                const id = params.get('id');
+                
+                if (!data[id]) {
+                    document.body.innerHTML = "<h1>خطأ: هذا المود غير موجود</h1>";
+                    return;
+                }
+                
+                targetModUrl = data[id];
+                renderSteps();
+            } catch (e) {
+                document.body.innerHTML = "<h1>خطأ في الاتصال بالسيرفر</h1>";
+            }
+        }
+
+        function renderSteps() {
+            const wrapper = document.getElementById('steps-wrapper');
+            for (let s = 1; s <= 4; s++) {
+                let div = document.createElement('div');
+                div.id = 'step-' + s;
+                div.className = 'step' + (s === 1 ? ' active' : '');
+                div.innerHTML = `
+                    <h2>الخطوة ${s} من 4</h2>
+                    <div class="ad-box">مكان الإعلانات الخاص بك</div>
+                    <button class="btn" id="btn-${s}" onclick="nextStep(${s})">
+                        ${s === 4 ? 'تحميل المود الآن' : 'التالي'}
+                    </button>
+                `;
+                wrapper.appendChild(div);
+            }
+        }
+
+        function nextStep(s) {
+            if (s < 4) {
+                document.getElementById('step-' + s).classList.remove('active');
+                document.getElementById('step-' + (s + 1)).classList.add('active');
+            } else {
+                // عند الخطوة الأخيرة ننتقل لرابط المود
+                window.location.href = targetModUrl;
+            }
         }
 
         init();
