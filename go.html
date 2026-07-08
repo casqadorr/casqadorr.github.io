@@ -1,235 +1,191 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>موقع كاسكادور</title>
-    <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مركز التحميلات</title>
+
+<style>
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
-html,body{
-    font-family:Consolas, "Courier New", monospace;
-    background:#050505;
-    color:#00ff88;
-    overflow-x:hidden;
-    min-height:100vh;
-}
-
-/* خلفية شبكية */
 body{
-    background-image:
-    linear-gradient(rgba(0,255,120,.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,255,120,.05) 1px, transparent 1px);
-    background-size:40px 40px;
-    padding:25px;
+    font-family:Tahoma,sans-serif;
+    background:#111;
+    color:#fff;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
 }
 
-#progress{
-    max-width:850px;
-    margin:20px auto;
-    background:#0d0d0d;
-    border:1px solid #00ff88;
-    border-radius:12px;
-    padding:15px;
-    font-size:20px;
-    font-weight:bold;
-    box-shadow:0 0 15px rgba(0,255,136,.25);
-}
-
-.step{
-    display:none;
-    max-width:850px;
-    margin:25px auto;
-    padding:30px;
-    border:1px solid #00ff88;
-    border-radius:15px;
-    background:#101010;
-    box-shadow:
-        0 0 20px rgba(0,255,136,.18),
-        inset 0 0 20px rgba(0,255,136,.05);
-}
-
-.step.active{
-    display:block;
-    animation:fade .4s;
-}
-
-@keyframes fade{
-    from{
-        opacity:0;
-        transform:translateY(20px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-.step h1{
-    color:#00ff88;
-    margin-bottom:15px;
-    text-shadow:0 0 12px #00ff88;
-    font-size:34px;
-}
-
-.step p{
-    color:#8affc3;
-    font-size:18px;
-    margin-bottom:25px;
-}
-
-.btn{
+.container{
     width:100%;
-    max-width:320px;
-    padding:18px;
-    border:none;
-    border-radius:10px;
-    background:#00ff88;
-    color:#000;
+    max-width:900px;
+    margin:auto;
+    padding:20px;
+    text-align:center;
+}
+
+h1{
+    margin:20px 0;
+    font-size:32px;
+}
+
+p{
+    margin:15px 0;
     font-size:20px;
-    font-weight:bold;
+}
+
+#ad-space{
+    width:100%;
+    min-height:500px;
+    border:2px dashed #444;
+    margin:30px 0;
+}
+
+.bottom{
+    margin-top:auto;
+    padding:20px;
+    text-align:center;
+}
+
+button{
+    width:100%;
+    max-width:350px;
+    height:55px;
+    font-size:20px;
     cursor:pointer;
-    transition:.25s;
-    box-shadow:0 0 20px rgba(0,255,136,.45);
 }
 
-.btn:hover:not(:disabled){
-    transform:scale(1.04);
-    box-shadow:0 0 35px rgba(0,255,136,.8);
-}
-
-.btn:disabled{
-    background:#1a1a1a;
-    color:#666;
-    border:1px solid #333;
-    box-shadow:none;
+button:disabled{
     cursor:not-allowed;
 }
 
-.ads-container{
-    width:100%;
-    display:flex;
-    flex-direction:column;
-    gap:15px;
-    margin:25px auto;
-}
-
-.ad-frame{
-    width:100%;
-    height:120px;
-    border:1px solid #00ff88;
-    border-radius:10px;
-    background:#000;
-    box-shadow:0 0 10px rgba(0,255,136,.25);
-}
-
-::-webkit-scrollbar{
-    width:10px;
-}
-
-::-webkit-scrollbar-track{
-    background:#050505;
-}
-
-::-webkit-scrollbar-thumb{
-    background:#00ff88;
-    border-radius:20px;
+footer{
+    margin-top:20px;
+    color:#aaa;
 }
 </style>
 
 </head>
 <body>
 
-    stepDiv.innerHTML = `
-    <h1>الخطوة ${s}</h1>
-    <p>يرجى الانتظار حتى انتهاء الوقت للمتابعة.</p>
-    <p style="margin-top:15px;font-size:20px;color:#ffd54a;font-weight:bold;text-shadow:0 0 10px #ffd54a;">
-        ⬇️ انزل إلى الأسفل واضغط <span style="color:#00ff88;">استمرار</span>
-    </p>
-`;
+<div class="container">
 
+<h1 id="stepTitle">الخطوة 1/4</h1>
 
+<p>مرحباً إلى مركز التحميلات</p>
 
-    <script>
-        const wrapper = document.getElementById('steps-wrapper');
-        
-        // إنشاء الخطوات الأربعة
-        for (let s = 1; s <= 4; s++) {
-            let stepDiv = document.createElement('div');
-            stepDiv.id = 'step-' + s;
-            stepDiv.className = 'step' + (s === 1 ? ' active' : '');
-            stepDiv.innerHTML = `<h1>الخطوة ${s}</h1><p>يرجى الانتظار حتى انتهاء الوقت للمتابعة.</p>`;
-            
+<p>⬇️ انزل إلى الأسفل واضغط استمرار</p>
 
+<div id="ad-space"></div>
 
+</div>
 
+<div class="bottom">
+    <button id="nextBtn" disabled>انتظر 10 ثوانٍ</button>
+    <footer>©2026 Casqadore</footer>
+</div>
 
+<script>
 
+let currentStep = 1;
+const totalSteps = 4;
 
+const btn = document.getElementById("nextBtn");
+const title = document.getElementById("stepTitle");
 
+function startTimer(){
 
+    let time = 10;
 
+    btn.disabled = true;
+    btn.textContent = "انتظر " + time + " ثوانٍ";
 
-            let btn = document.createElement('button');
-            btn.className = 'btn';
-            btn.id = 'btn-' + s;
-            btn.disabled = true;
-            btn.innerText = "انتظر 10 ثوانٍ";
-            btn.onclick = (s < 4) ? () => startStep(s + 1) : showLink;
-            stepDiv.appendChild(btn);
-            wrapper.appendChild(stepDiv);
+    const timer = setInterval(()=>{
+
+        time--;
+
+        if(time>0){
+
+            btn.textContent = "انتظر " + time + " ثوانٍ";
+
+        }else{
+
+            clearInterval(timer);
+
+            btn.disabled = false;
+
+            btn.textContent = currentStep < totalSteps
+            ? "استمرار"
+            : "الحصول على الرابط";
+
         }
 
-        // تشغيل المؤقت
-        function startTimer(btn, s) {
-            let timeLeft = 10;
-            btn.innerText = "انتظر " + timeLeft + " ثانية";
-            let timer = setInterval(() => {
-                timeLeft--;
-                if (timeLeft > 0) {
-                    btn.innerText = "انتظر " + timeLeft + " ثانية";
-                } else {
-                    btn.innerText = (s < 4) ? "التالي (" + (s + 1) + "/4)" : "الحصول على الرابط";
-                    btn.disabled = false;
-                    clearInterval(timer);
-                }
-            }, 1000);
+    },1000);
+
+}
+
+btn.onclick = async ()=>{
+
+    if(currentStep < totalSteps){
+
+        currentStep++;
+
+        title.textContent = "الخطوة " + currentStep + "/4";
+
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+
+        startTimer();
+
+        return;
+
+    }
+
+    const params = new URLSearchParams(location.search);
+    const id = params.get("id");
+
+    if(!id){
+        alert("لا يوجد id في الرابط.");
+        return;
+    }
+
+    try{
+
+        const response = await fetch("links.json");
+
+        if(!response.ok)
+            throw new Error();
+
+        const links = await response.json();
+
+        if(links[id]){
+
+            location.href = links[id];
+
+        }else{
+
+            alert("الرابط غير موجود.");
+
         }
 
-        // الانتقال بين الخطوات
-        function startStep(n) {
-            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-            document.getElementById('step-' + n).classList.add('active');
-            document.getElementById('current-step').innerText = n;
-            window.scrollTo(0, 0);
-            startTimer(document.getElementById('btn-' + n), n);
-        }
+    }catch{
 
-        // بدء المؤقت للخطوة الأولى
-        startTimer(document.getElementById('btn-1'), 1);
+        alert("تعذر تحميل links.json");
 
-        // وظيفة جلب الرابط
-        async function showLink() {
-            const params = new URLSearchParams(window.location.search);
-            const id = params.get("id");
-            if (!id) { alert("لم يتم العثور على معرف الرابط."); return; }
-            try {
-                const response = await fetch("./links.json");
-                if (!response.ok) throw new Error("تعذر تحميل ملف links.json");
-                const links = await response.json();
-                if (links[id]) {
-                    window.location.href = links[id];
-                } else {
-                    alert("الرابط غير موجود.");
-                }
-            } catch (err) {
-                alert("حدث خطأ أثناء تحميل الروابط.");
-            }
-        }
-    </script>
+    }
+
+};
+
+startTimer();
+
+</script>
+
 </body>
 </html>
