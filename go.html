@@ -144,13 +144,8 @@ body{
 </head>
 <body>
 
-    stepDiv.innerHTML = `
-    <h1>الخطوة ${s}</h1>
-    <p>يرجى الانتظار حتى انتهاء الوقت للمتابعة.</p>
-    <p style="margin-top:15px;font-size:20px;color:#ffd54a;font-weight:bold;text-shadow:0 0 10px #ffd54a;">
-        ⬇️ انزل إلى الأسفل واضغط <span style="color:#00ff88;">استمرار</span>
-    </p>
-`;
+    <div id="progress">الخطوة <span id="current-step">1</span> / 4</div>
+<div id="steps-wrapper"></div>
 
     <script>
         const wrapper = document.getElementById('steps-wrapper');
