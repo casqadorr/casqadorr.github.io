@@ -3,5 +3,6 @@
   "1": "https://example.com/mod1.zip",
   "2": "https://example.com/mod2.zip",
   "01": "ff",
-  "001": "gavbs"
+  "001": "gavbs",
+  "0001": "zz"
 }
