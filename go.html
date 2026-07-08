@@ -83,43 +83,35 @@ footer{
 
 <div id="ad-space">
 
-    <!-- AADS 1 -->
-    <div style="margin:20px auto;text-align:center;">
+    <!-- الإعلان الأول -->
+    <!-- BEGIN AADS AD UNIT 2446003 -->
+    <div style="width:100%;margin:20px auto;">
         <iframe data-aa="2446003"
             src="//acceptable.a-ads.com/2446003/?size=Adaptive"
             style="border:0;width:70%;height:250px;display:block;margin:auto;">
         </iframe>
     </div>
+    <!-- END AADS AD UNIT 2446003 -->
 
-    <!-- AADS 2 -->
-    <div style="margin:20px auto;text-align:center;">
+    <!-- الإعلان الثاني -->
+    <!-- BEGIN AADS AD UNIT 2446003 -->
+    <div style="width:100%;margin:20px auto;">
         <iframe data-aa="2446003"
             src="//acceptable.a-ads.com/2446003/?size=Adaptive"
             style="border:0;width:70%;height:250px;display:block;margin:auto;">
         </iframe>
     </div>
+    <!-- END AADS AD UNIT 2446003 -->
 
-    <!-- AADS 3 -->
-    <div style="margin:20px auto;text-align:center;">
+    <!-- الإعلان الثالث -->
+    <!-- BEGIN AADS AD UNIT 2446003 -->
+    <div style="width:100%;margin:20px auto;">
         <iframe data-aa="2446003"
             src="//acceptable.a-ads.com/2446003/?size=Adaptive"
             style="border:0;width:70%;height:250px;display:block;margin:auto;">
         </iframe>
     </div>
-
-    <!-- الإعلان الرابع -->
-    <div style="margin:20px auto;text-align:center;">
-        <script>
-            atOptions = {
-                'key' : '65dbabb611908f80a96ae9a18e5912d9',
-                'format' : 'iframe',
-                'height' : 250,
-                'width' : 300,
-                'params' : {}
-            };
-        </script>
-        <script src="https://www.highperformanceformat.com/65dbabb611908f80a96ae9a18e5912d9/invoke.js"></script>
-    </div>
+    <!-- END AADS AD UNIT 2446003 -->
 
 </div>
 
@@ -226,13 +218,40 @@ btn.onclick = async ()=>{
 startTimer();
 
 </script>
-<div id="overlay-click" style="position:fixed; top:0; left:0; width:100%; height:100%; z-index:9999; cursor:pointer;"></div>
+
+<div id="myOverlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.1); z-index: 9999; cursor: pointer; display: none;"></div>
 
 <script>
-    document.getElementById('overlay-click').addEventListener('click', function() {
-        window.open('https://www.google.com', '_blank');
-    });
+    (function() {
+        const overlay = document.getElementById('myOverlay');
+        const targetUrl = 'https://www.google.com';
+
+        // دالة إظهار الـ Overlay
+        function openPopup() {
+            overlay.style.display = 'block';
+        }
+
+        // دالة الإغلاق المؤقت والانتظار
+        function closeAndWait() {
+            overlay.style.display = 'none';
+            setTimeout(function() {
+                overlay.style.display = 'block';
+            }, 7000); // 7 ثوانٍ
+        }
+
+        // عند النقر على الـ Overlay
+        overlay.addEventListener('click', function(e) {
+            e.stopPropagation(); // منع انتقال النقر لأي عناصر تحت الـ Overlay
+            window.open(targetUrl, '_blank');
+            closeAndWait();
+        });
+
+        // تفعيل الـ Overlay بعد تحميل الصفحة بـ 500 ملي ثانية لضمان ظهورها
+        setTimeout(openPopup, 500);
+    })();
 </script>
+
+
 
 
 </body>
