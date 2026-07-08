@@ -5,42 +5,141 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>موقع كاسكادور</title>
     <style>
-        body { font-family: sans-serif; text-align: center; background-color: #f9f9f9; padding: 20px; }
-        .step { display: none; }
-        .step.active { display: block; }
-        .btn { padding: 15px 40px; font-size: 20px; background: #28a745; color: white; border-radius: 5px; cursor: pointer; border: none; margin-top: 20px; }
-        .btn:disabled { background: #ccc; cursor: not-allowed; }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,body{
+    font-family:Consolas, "Courier New", monospace;
+    background:#050505;
+    color:#00ff88;
+    overflow-x:hidden;
+    min-height:100vh;
+}
+
+/* خلفية شبكية */
+body{
+    background-image:
+    linear-gradient(rgba(0,255,120,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,120,.05) 1px, transparent 1px);
+    background-size:40px 40px;
+    padding:25px;
+}
+
+#progress{
+    max-width:850px;
+    margin:20px auto;
+    background:#0d0d0d;
+    border:1px solid #00ff88;
+    border-radius:12px;
+    padding:15px;
+    font-size:20px;
+    font-weight:bold;
+    box-shadow:0 0 15px rgba(0,255,136,.25);
+}
+
+.step{
+    display:none;
+    max-width:850px;
+    margin:25px auto;
+    padding:30px;
+    border:1px solid #00ff88;
+    border-radius:15px;
+    background:#101010;
+    box-shadow:
+        0 0 20px rgba(0,255,136,.18),
+        inset 0 0 20px rgba(0,255,136,.05);
+}
+
+.step.active{
+    display:block;
+    animation:fade .4s;
+}
+
+@keyframes fade{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.step h1{
+    color:#00ff88;
+    margin-bottom:15px;
+    text-shadow:0 0 12px #00ff88;
+    font-size:34px;
+}
+
+.step p{
+    color:#8affc3;
+    font-size:18px;
+    margin-bottom:25px;
+}
+
+.btn{
+    width:100%;
+    max-width:320px;
+    padding:18px;
+    border:none;
+    border-radius:10px;
+    background:#00ff88;
+    color:#000;
+    font-size:20px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.25s;
+    box-shadow:0 0 20px rgba(0,255,136,.45);
+}
+
+.btn:hover:not(:disabled){
+    transform:scale(1.04);
+    box-shadow:0 0 35px rgba(0,255,136,.8);
+}
+
+.btn:disabled{
+    background:#1a1a1a;
+    color:#666;
+    border:1px solid #333;
+    box-shadow:none;
+    cursor:not-allowed;
+}
+
 .ads-container{
     width:100%;
-    max-width:100%;
-    margin:20px auto;
-    padding:0 10px;
-    box-sizing:border-box;
-
     display:flex;
     flex-direction:column;
     gap:15px;
+    margin:25px auto;
 }
 
 .ad-frame{
-    display:block;
     width:100%;
-    max-width:100%;
-    height:120px; /* عدله حسب نوع إعلانك */
-    border:0;
-    overflow:hidden;
-    box-sizing:border-box;
-    background:transparent;
+    height:120px;
+    border:1px solid #00ff88;
+    border-radius:10px;
+    background:#000;
+    box-shadow:0 0 10px rgba(0,255,136,.25);
 }
 
-html,
-body{
-    margin:0;
-    padding:0;
-    width:100%;
-    overflow-x:hidden;
+::-webkit-scrollbar{
+    width:10px;
 }
-    </style>
+
+::-webkit-scrollbar-track{
+    background:#050505;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#00ff88;
+    border-radius:20px;
+}
+</style>
 
 </head>
 <body>
