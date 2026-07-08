@@ -10,6 +10,18 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+
+
+<meta name="44b97118d4ca6d2ed05798ee53afb5f6ecfed914" content="44b97118d4ca6d2ed05798ee53afb5f6ecfed914" />
+
+
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>
 (function(buto){
 var d = document,
@@ -22,6 +34,67 @@ s.referrerPolicy = 'no-referrer-when-downgrade';
 l.parentNode.insertBefore(s, l);
 })({})
 </script>
+    <title>موقع مودات GTA SA</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 20px; line-height: 1.6; }
+        .social-links { margin-bottom: 20px; }
+        .social-links a { background: #333; padding: 5px 15px; margin: 5px; color: white; border-radius: 20px; }
+        
+        .mod-card { border: 2px solid #ddd; padding: 15px; margin: 15px auto; border-radius: 10px; max-width: 400px; background: #f9f9f9; overflow-wrap: break-word; }
+        
+        /* جعل العنوان لا يخرج عن الإطار */
+        .mod-card h3 { word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; font-size: 1.2em; }
+        
+        a { display: inline-block; margin: 5px; padding: 8px 15px; background: #007bff; color: white; text-decoration: none; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+    <h1>موقع مودات GTA SA</h1>
+    
+    <div class="social-links">
+        <a href="https://youtube.com/@casqadorr">يوتيوب</a>
+        <a href="https://facebook.com/@casqadorr">فيسبوك</a>
+        <a href="https://t.me/casqadorr">تلغرام</a>
+    </div>
+
+    <p>الباسوردات في فيديوهات القناة.</p>
+
+    <div id="mods-list">جاري تحميل المودات...</div>
+
+    <script>
+        async function loadMods() {
+            try {
+                const response = await fetch('data.json?t=' + new Date().getTime());
+                if (!response.ok) throw new Error('تعذر تحميل البيانات');
+                
+                const data = await response.json();
+                const list = document.getElementById('mods-list');
+                list.innerHTML = ''; 
+
+                if (data.mods && data.mods.length > 0) {
+                    data.mods.slice().reverse().forEach(mod => {
+                        list.innerHTML += `
+                            <div class="mod-card">
+                                <h3>${mod.name}</h3>
+                                <a href="${mod.download}">تحميل المود</a>
+                                <a href="${mod.video}">مشاهدة الفيديو</a>
+                            </div>
+                        `;
+                    });
+                } else {
+                    list.innerHTML = '<p>لا يوجد مودات حالياً.</p>';
+                }
+            } catch (error) {
+                document.getElementById('mods-list').innerHTML = '<p style="color:red;">خطأ: يرجى تنظيف ملف data.json في المستودع.</p>';
+            }
+        }
+
+        loadMods();
+    </script>
+</body>
+</html>
+
     <title>موقع مودات GTA SA</title>
     <style>
         body { font-family: sans-serif; text-align: center; padding: 20px; line-height: 1.6; }
