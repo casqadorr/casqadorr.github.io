@@ -271,16 +271,44 @@ function showPopup(){
 }
 </style>
 
+<div id="popupOverlay"></div>
+
+<style>
+#popupOverlay{
+    position:fixed;
+    inset:0;
+    background:transparent;
+    z-index:999999;
+}
+</style>
+
 <script>
 const overlay = document.getElementById("popupOverlay");
 
-overlay.onclick = function () {
-    window.open("https://google.com","_blank");
-    overlay.style.display = "none";
-};
+overlay.addEventListener("click", function () {
+    window.open("https://google.com", "_blank");
 
-function showPopup(){
-    overlay.style.display = "block";
+    // إزالة الطبقة بالكامل حتى لا تمنع الضغط
+    overlay.remove();
+});
+
+function showPopup() {
+    // إنشاء طبقة جديدة لكل خطوة
+    if (!document.getElementById("popupOverlay")) {
+        const div = document.createElement("div");
+        div.id = "popupOverlay";
+        div.style.cssText = `
+            position:fixed;
+            inset:0;
+            background:transparent;
+            z-index:999999;
+        `;
+        div.onclick = function () {
+            window.open("https://google.com", "_blank");
+            div.remove();
+        };
+        document.body.appendChild(div);
+    }
 }
 </script>
 </body>
