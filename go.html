@@ -3,88 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تجهيز رابط التحميل</title>
+    <title>تحميل المود - نظام الإعلانات</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; text-align: center; background-color: #f0f2f5; padding: 20px; }
-        .container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        body { font-family: sans-serif; text-align: center; background-color: #f9f9f9; padding: 20px; }
         .step { display: none; }
         .step.active { display: block; }
-        .ad-box { border: 1px dashed #ccc; padding: 15px; margin: 20px 0; min-height: 100px; background: #fafafa; }
-        .btn { padding: 15px 30px; font-size: 18px; background: #2563eb; color: white; border: none; border-radius: 8px; cursor: pointer; transition: 0.3s; }
-        .btn:disabled { background: #94a3b8; cursor: not-allowed; }
+        .ads-container { display: flex; flex-direction: column; gap: 15px; margin: 20px 0; }
+        .ad-box { border: 1px solid #ddd; background: #fff; padding: 10px; width: 100%; box-sizing: border-box; min-height: 50px; }
+        .btn { padding: 15px 40px; font-size: 20px; background: #28a745; color: white; border-radius: 5px; cursor: pointer; border: none; margin-top: 20px; }
+        .btn:disabled { background: #ccc; cursor: not-allowed; }
         #pop-under { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 99999; cursor: pointer; }
     </style>
 </head>
 <body>
 
     <div id="pop-under" onclick="openPopUnder()"></div>
-
-    <div class="container">
-        <div id="steps-wrapper"></div>
-    </div>
+    <div id="progress">الخطوة <span id="current-step">1</span> / 4</div>
+    <div id="steps-wrapper"></div>
 
     <script>
-        const POP_URL = "https://www.effectivecpmnetwork.com/yikqud60?key=5eb19de74fc2424b1bb5308e8244ffdc";
+        // دالة الـ Pop-under المحدثة لتعمل في كل الخطوات
         let canOpenPop = true;
-        let targetModUrl = "";
-
-        // دالة الـ Pop-under
         function openPopUnder() {
             if (!canOpenPop) return;
-            window.open(POP_URL, "_blank");
+            window.open("https://www.effectivecpmnetwork.com/yikqud60?key=5eb19de74fc2424b1bb5308e8244ffdc", "_blank");
             canOpenPop = false;
-            setTimeout(() => { canOpenPop = true; }, 3000); // إتاحة النقرة التالية بعد 3 ثوانٍ
+            setTimeout(() => { canOpenPop = true; }, 3000);
         }
 
-        async function init() {
-            try {
-                // جلب الروابط من GitHub الخاص بك
-                const resp = await fetch('https://casqadorr.github.io/links.json');
-                const data = await resp.json();
-                
-                const params = new URLSearchParams(window.location.search);
-                const id = params.get('id');
-                
-                if (!data[id]) {
-                    document.body.innerHTML = "<h1>خطأ: هذا المود غير موجود</h1>";
-                    return;
-                }
-                
-                targetModUrl = data[id];
-                renderSteps();
-            } catch (e) {
-                document.body.innerHTML = "<h1>خطأ في الاتصال بالسيرفر</h1>";
+        // دالة إنشاء الإعلانات
+        function createAd(container, type) {
+            let box = document.createElement('div');
+            box.className = 'ad-box';
+            container.appendChild(box);
+            let iframe = document.createElement('iframe');
+            iframe.style.border = "none";
+            iframe.style.width = "100%";
+            box.appendChild(iframe);
+            let doc = iframe.contentWindow.document;
+            let rnd = Math.random();
+            if (type === 'aads') {
+                iframe.src = "//acceptable.a-ads.com/2446003/?size=Adaptive";
+                iframe.style.height = "100px";
+            } else {
+                let adContent = (type === 'shameful') ? `<script src="//shameful-farm.com/byXoV/s.dkGNl/0hYaWecL/Oe/m-9Ou/Z/U-lfkSPwTTcayHMhD/MaysO/TVMjt_NhzpIkwlM/z/IH5KNdww?r=${rnd}" async><\/script>` : `<script>atOptions = {"key" : "65dbabb611908f80a96ae9a18e5912d9","format" : "iframe","height" : 250,"width" : 300,"params" : {}};<\/script><script src="https://www.highperformanceformat.com/65dbabb611908f80a96ae9a18e5912d9/invoke.js?r=${rnd}"><\/script>`;
+                doc.open();
+                doc.write('<html><body>' + adContent + '</body></html>');
+                doc.close();
+                iframe.style.height = "250px";
             }
         }
 
-        function renderSteps() {
+        // تهيئة الصفحة وجلب الرابط من JSON
+        async function initPage() {
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get('id');
+            
+            // جلب البيانات من ملفك
+            const response = await fetch('https://casqadorr.github.io/links.json');
+            const links = await response.json();
+
+            if (!links[id]) {
+                document.body.innerHTML = "<h1>عذراً، الرابط غير متاح (ID غير موجود)</h1>";
+                return;
+            }
+
+            const targetUrl = links[id];
+            buildSteps(targetUrl);
+        }
+
+        function buildSteps(finalUrl) {
             const wrapper = document.getElementById('steps-wrapper');
             for (let s = 1; s <= 4; s++) {
-                let div = document.createElement('div');
-                div.id = 'step-' + s;
-                div.className = 'step' + (s === 1 ? ' active' : '');
-                div.innerHTML = `
-                    <h2>الخطوة ${s} من 4</h2>
-                    <div class="ad-box">مكان الإعلانات الخاص بك</div>
-                    <button class="btn" id="btn-${s}" onclick="nextStep(${s})">
-                        ${s === 4 ? 'تحميل المود الآن' : 'التالي'}
-                    </button>
-                `;
-                wrapper.appendChild(div);
+                let stepDiv = document.createElement('div');
+                stepDiv.id = 'step-' + s;
+                stepDiv.className = 'step' + (s === 1 ? ' active' : '');
+                stepDiv.innerHTML = `<h1>الخطوة ${s}</h1><div class="ads-container" id="ads-container-${s}"></div>`;
+                
+                let btn = document.createElement('button');
+                btn.className = 'btn';
+                btn.id = 'btn-' + s;
+                btn.disabled = true;
+                btn.innerText = "انتظر 10 ثوانٍ";
+                btn.onclick = (s < 4) ? () => startStep(s + 1) : () => window.location.href = finalUrl;
+                stepDiv.appendChild(btn);
+                wrapper.appendChild(stepDiv);
+
+                let container = document.getElementById('ads-container-' + s);
+                for(let i=0; i<2; i++) createAd(container, 'aads');
+                for(let i=0; i<3; i++) createAd(container, 'shameful');
             }
+            startTimer(document.getElementById('btn-1'), 1);
         }
 
-        function nextStep(s) {
-            if (s < 4) {
-                document.getElementById('step-' + s).classList.remove('active');
-                document.getElementById('step-' + (s + 1)).classList.add('active');
-            } else {
-                // عند الخطوة الأخيرة ننتقل لرابط المود
-                window.location.href = targetModUrl;
-            }
+        function startTimer(btn, s) {
+            let timeLeft = 10;
+            let timer = setInterval(() => {
+                timeLeft--;
+                if (timeLeft > 0) btn.innerText = "انتظر " + timeLeft + " ثانية";
+                else { btn.innerText = (s < 4) ? "التالي (" + (s + 1) + "/4)" : "تحميل المود الآن"; btn.disabled = false; clearInterval(timer); }
+            }, 1000);
         }
 
-        init();
+        function startStep(n) {
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            document.getElementById('step-' + n).classList.add('active');
+            document.getElementById('current-step').innerText = n;
+            window.scrollTo(0, 0);
+            startTimer(document.getElementById('btn-' + n), n);
+        }
+
+        initPage();
     </script>
 </body>
 </html>
